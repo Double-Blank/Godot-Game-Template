@@ -1,6 +1,7 @@
 extends Sprite2D
 
 @export var speed: float = 400
+@export var damage: float = 25
 var target_enemy: Node2D = null
 
 func _ready() -> void:
@@ -29,3 +30,11 @@ func _physics_process(delta: float) -> void:
 	# 如果子弹移出屏幕，删除它
 	if global_position.x > 1200:  # 假设屏幕宽度约为1152
 		queue_free()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("hint", body.has_method("take_damage"))
+	if body.has_method("take_damage"):
+		body.take_damage(damage)
+		queue_free()
+	pass # Replace with function body.
