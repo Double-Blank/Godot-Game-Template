@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dirx58aognr06"]
+[gd_scene load_steps=8 format=3 uid="uid://dirx58aognr06"]
 
 [ext_resource type="Texture2D" uid="uid://bgqb3wbjeuyjo" path="res://resources/back-ground/background.png" id="1_hu8oq"]
-[ext_resource type="Texture2D" uid="uid://cba7o4cre72tu" path="res://assets/spine/plant-root/plat-root.png" id="2_e35xt"]
-[ext_resource type="Script" uid="uid://cr03a8fuo1ca" path="res://scenes/game_scene/begin/tower.gd" id="3_fdnxm"]
-[ext_resource type="Texture2D" uid="uid://c40si3ddhev16" path="res://assets/spine/plant-stage-1/plant-stage-1.png" id="3_oyht3"]
-[ext_resource type="PackedScene" uid="uid://d0qtjs2vnniye" path="res://scenes/game_scene/begin/green-enemy/enemy_maomaochong_0.tscn" id="5_me443"]
+[ext_resource type="PackedScene" uid="uid://d0qtjs2vnniye" path="res://scenes/game_scene/begin/enemy/enemy_maomaochong_0.tscn" id="5_me443"]
+[ext_resource type="PackedScene" uid="uid://d17s8jc7yitgm" path="res://scenes/game_scene/begin/enemy/enemy_maomaochong_1.tscn" id="6_cvccj"]
+[ext_resource type="PackedScene" uid="uid://cl1pbpo5utj64" path="res://scenes/game_scene/begin/plant-main/plat_root.tscn" id="6_fdnxm"]
 [ext_resource type="Script" uid="uid://mlg58vxs5i1d" path="res://scenes/game_scene/begin/spawner.gd" id="6_m2b6q"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://cs7uuetomhd0" path="res://scenes/game_scene/begin/plant-main/new_spine_skeleton_data_resource.tres" id="7_fdnxm"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://bjejs33tnsfr2" path="res://scenes/game_scene/begin/plant-stage-0/new_spine_skeleton_data_resource.tres" id="8_pcmbq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2b6q"]
+size = Vector2(91, 772)
 
 [node name="Level1" type="Control"]
 layout_mode = 3
@@ -17,40 +18,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_hu8oq")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+offset = Vector2(80, 29)
+transform = Transform2D(1, 0, 0, 1, 80, 29)
 
-[node name="Plat-root" type="Sprite2D" parent="."]
-position = Vector2(2, 123)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_e35xt")
-script = ExtResource("3_fdnxm")
-
-[node name="Timer" type="Timer" parent="Plat-root"]
-
-[node name="Plant-stage-1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(16, -62)
-texture = ExtResource("3_oyht3")
-
-[node name="Enemy-maomaochong-0" parent="." instance=ExtResource("5_me443")]
-position = Vector2(562, -7)
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "o"
 
 [node name="spawner" type="Marker2D" parent="."]
-position = Vector2(1176, -2)
+position = Vector2(523, 2)
 script = ExtResource("6_m2b6q")
+items = Array[PackedScene]([ExtResource("5_me443"), ExtResource("6_cvccj")])
 
-[node name="root" type="SpineSprite" parent="."]
-visible = false
-skeleton_data_res = ExtResource("7_fdnxm")
-preview_skin = "Default"
-preview_animation = "-- Empty --"
-preview_frame = false
-preview_time = 0.0
+[node name="Plat-root" parent="." groups=["frend"] instance=ExtResource("6_fdnxm")]
+visibility_layer = 2
+collision_layer = 2
 
 [node name="stemsAndLeaves" type="SpineSprite" parent="."]
 skeleton_data_res = ExtResource("8_pcmbq")
@@ -59,4 +50,8 @@ preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0
 
-[connection signal="timeout" from="Plat-root/Timer" to="Plat-root" method="_on_timer_timeout"]
+[node name="FishDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FishDetector"]
+position = Vector2(-719, -10)
+shape = SubResource("RectangleShape2D_m2b6q")

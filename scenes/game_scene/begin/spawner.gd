@@ -2,15 +2,15 @@ extends Marker2D
 
 @export var spawn_interval_min: float = 2
 @export var spawn_interval_max: float = 3
+@export var items:Array[PackedScene] = []
 
 func _ready() -> void:
-	print("ininin")
 	spawner_something()
 
 func spawner_something():
-	var test = get_parent()
-	print(test)
-	var finsh_scene = preload("res://scenes/game_scene/begin/green-enemy/enemy_maomaochong_0.tscn")
+	#var finsh_scene = preload("res://scenes/game_scene/begin/enemy/enemy_maomaochong_0.tscn")
+	var finsh_scene = items.pick_random()
+	
 	var new_fish = finsh_scene.instantiate()
 	add_child(new_fish)
 	

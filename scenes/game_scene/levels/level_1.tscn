@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://da00hutaakwk6"]
+[gd_scene load_steps=8 format=3 uid="uid://da00hutaakwk6"]
 
 [ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_623lg"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_sycfm"]
 [ext_resource type="Script" uid="uid://ch8aaykixbwn5" path="res://scenes/game_scene/input_display_label.gd" id="3_pmyid"]
 [ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="4_bsimd"]
 [ext_resource type="PackedScene" uid="uid://ks83y4cfd5a5" path="res://scenes/game_scene/tutorials/tutorial_1.tscn" id="5_fmabn"]
+[ext_resource type="PackedScene" uid="uid://d0qtjs2vnniye" path="res://scenes/game_scene/begin/enemy/enemy_maomaochong_0.tscn" id="6_pmyid"]
+[ext_resource type="PackedScene" uid="uid://d17s8jc7yitgm" path="res://scenes/game_scene/begin/enemy/enemy_maomaochong_1.tscn" id="7_bsimd"]
 
 [node name="Level1" type="Control"]
 layout_mode = 3
@@ -83,6 +85,12 @@ text = "Change Color"
 unique_name_in_owner = true
 script = ExtResource("4_bsimd")
 tutorial_scenes = Array[PackedScene]([ExtResource("5_fmabn")])
+
+[node name="Enemy-maomaochong-0" parent="." instance=ExtResource("6_pmyid")]
+position = Vector2(556, 202)
+
+[node name="Enemy-maomaochong-1" parent="." instance=ExtResource("7_bsimd")]
+position = Vector2(349, 203)
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]

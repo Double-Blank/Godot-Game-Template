@@ -1,13 +1,14 @@
-extends Sprite2D
+extends StaticBody2D
 
 @onready var timer = $Timer
-
+@export var health:float = 500
+@onready var health_bar = $HealthBar
 var bullet_scene = preload("res://scenes/game_scene/begin/bullet-green/greenbullet.tscn")
-var shoot_timer: float = 0.0
-var shoot_interval: float = 1.0  # 每秒发射一次
 
 func _ready():
+	health_bar.value = health
 	timer.start()
+	print(timer, "timer.start")
 
 func shoot_bullet():
 	var new_bullet = bullet_scene.instantiate()
@@ -17,4 +18,13 @@ func shoot_bullet():
 	new_bullet.global_position = Vector2(0, 0)
 
 func _on_timer_timeout():
+	print("_on_timer_timeout")
 	shoot_bullet()
+
+func take_damage(damage: float):
+	health -= damage
+	health_bar.value = health
+	
+	if health <= 0:
+		queue_free()
+	print()
