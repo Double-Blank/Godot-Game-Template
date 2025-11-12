@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cl1pbpo5utj64"]
 
-[ext_resource type="SpineSkeletonDataResource" uid="uid://cs7uuetomhd0" path="res://scenes/game_scene/begin/plant-main/new_spine_skeleton_data_resource.tres" id="1_dodxx"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://cs7uuetomhd0" path="res://scenes/game_scene/begin/plant-stage-0/plat_root.tres" id="1_dodxx"]
 [ext_resource type="Script" uid="uid://cr03a8fuo1ca" path="res://scenes/game_scene/begin/tower.gd" id="2_r73kd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dodxx"]

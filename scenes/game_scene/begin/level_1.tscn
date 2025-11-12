@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bgqb3wbjeuyjo" path="res://resources/back-ground/background.png" id="1_hu8oq"]
 [ext_resource type="PackedScene" uid="uid://d0qtjs2vnniye" path="res://scenes/game_scene/begin/enemy/enemy_maomaochong_0.tscn" id="5_me443"]
 [ext_resource type="PackedScene" uid="uid://d17s8jc7yitgm" path="res://scenes/game_scene/begin/enemy/enemy_maomaochong_1.tscn" id="6_cvccj"]
-[ext_resource type="PackedScene" uid="uid://cl1pbpo5utj64" path="res://scenes/game_scene/begin/plant-main/plat_root.tscn" id="6_fdnxm"]
+[ext_resource type="PackedScene" uid="uid://cl1pbpo5utj64" path="res://scenes/game_scene/begin/plant-stage-0/plat_root.tscn" id="6_fdnxm"]
 [ext_resource type="Script" uid="uid://mlg58vxs5i1d" path="res://scenes/game_scene/begin/spawner.gd" id="6_m2b6q"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://bjejs33tnsfr2" path="res://scenes/game_scene/begin/plant-stage-0/new_spine_skeleton_data_resource.tres" id="8_pcmbq"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://bjejs33tnsfr2" path="res://scenes/game_scene/begin/plant-stage-1/plant-leaves.tres" id="8_pcmbq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m2b6q"]
 size = Vector2(91, 772)
@@ -41,6 +41,7 @@ items = Array[PackedScene]([ExtResource("5_me443"), ExtResource("6_cvccj")])
 
 [node name="Plat-root" parent="." groups=["frend"] instance=ExtResource("6_fdnxm")]
 visibility_layer = 2
+position = Vector2(2, 1)
 collision_layer = 2
 
 [node name="stemsAndLeaves" type="SpineSprite" parent="."]
