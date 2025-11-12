@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://j4yoixdcx7yd"]
+
+[ext_resource type="Script" uid="uid://bdm2srumbarce" path="res://scenes/game_scene/begin/plant_growth_ui.gd" id="1_4b5c6"]
+[ext_resource type="PackedScene" uid="uid://b464gwurxxded" path="res://scenes/game_scene/begin/plant_component.tscn" id="2_3oq54"]
+
+[node name="PlantGrowthUI" type="Control"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -200.0
+offset_right = 220.0
+offset_bottom = -20.0
+grow_vertical = 0
+script = ExtResource("1_4b5c6")
+
+[node name="PlantComponent" parent="." instance=ExtResource("2_3oq54")]
+position = Vector2(554, -165)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StageLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "阶段: 发芽 (0)"
+horizontal_alignment = 1
+
+[node name="InfoLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "状态: 存活"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="GrowButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "生长 (+1 阶段)"
+
+[node name="KillButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "杀死植物"
