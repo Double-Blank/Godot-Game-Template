@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf2dxsf5xr623"
-path="res://.godot/imported/0000.jpg-3b5c8f52c35ca035ba6d79d5f263d4fd.ctex"
+uid="uid://cfqsadd64q0ey"
+path="res://.godot/imported/Tomato stage.png-e802d5aeeb187986ec3b960ea041d3ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://html-backup/webVR/assets/0000.jpg"
-dest_files=["res://.godot/imported/0000.jpg-3b5c8f52c35ca035ba6d79d5f263d4fd.ctex"]
+source_file="res://assets/spine/Tomato-stage/Tomato stage.png"
+dest_files=["res://.godot/imported/Tomato stage.png-e802d5aeeb187986ec3b960ea041d3ef.ctex"]
 
 [params]
 

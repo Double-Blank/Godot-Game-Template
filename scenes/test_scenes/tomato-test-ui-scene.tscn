@@ -1,0 +1,166 @@
+[gd_scene load_steps=4 format=3 uid="uid://8be4f4kyhukx"]
+
+[ext_resource type="PackedScene" path="res://scenes/components/plant-tomato-stage/tomato_plant.tscn" id="1_tomato"]
+
+[sub_resource type="GDScript" id="GDScript_1"]
+script/source = "extends Control
+
+@onready var tomato_plant = $TomatoPlant
+@onready var stage_label = $UI/VBoxContainer/StageLabel
+@onready var progress_label = $UI/VBoxContainer/ProgressLabel
+
+func _ready():
+	# 连接信号
+	tomato_plant.stage_changed.connect(_on_stage_changed)
+	tomato_plant.growth_completed.connect(_on_growth_completed)
+	
+	# 更新初始显示
+	update_ui()
+
+func _on_stage_changed(new_stage):
+	update_ui()
+	print(\"番茄生长阶段变化: \", tomato_plant.get_stage_name())
+
+func _on_growth_completed():
+	print(\"番茄生长完成！\")
+
+func update_ui():
+	stage_label.text = \"当前阶段: \" + tomato_plant.get_stage_name()
+	progress_label.text = \"生长进度: %.1f%%\" % tomato_plant.get_progress_percentage()
+
+func _on_next_stage_button_pressed():
+	tomato_plant.grow_to_next_stage()
+
+func _on_reset_button_pressed():
+	tomato_plant.reset_to_stage_1()
+
+func _on_auto_grow_button_pressed():
+	tomato_plant.auto_grow = !tomato_plant.auto_grow
+	if tomato_plant.auto_grow:
+		tomato_plant.setup_auto_growth()
+	elif tomato_plant.growth_timer:
+		tomato_plant.growth_timer.stop()
+	
+	$UI/VBoxContainer/HBoxContainer/AutoGrowButton.text = \"自动生长: \" + (\"开启\" if tomato_plant.auto_grow else \"关闭\")
+
+func _on_stage_1_pressed():
+	tomato_plant.grow_to_stage(TomatoStageManager.GrowthStage.STAGE_1)
+
+func _on_stage_2_pressed():
+	tomato_plant.grow_to_stage(TomatoStageManager.GrowthStage.STAGE_2)
+
+func _on_stage_3_pressed():
+	tomato_plant.grow_to_stage(TomatoStageManager.GrowthStage.STAGE_3)
+
+func _on_stage_4_pressed():
+	tomato_plant.grow_to_stage(TomatoStageManager.GrowthStage.STAGE_4)
+
+func _on_stage_5_pressed():
+	tomato_plant.grow_to_stage(TomatoStageManager.GrowthStage.STAGE_5)
+
+func _on_stage_6_pressed():
+	tomato_plant.grow_to_stage(TomatoStageManager.GrowthStage.STAGE_6)
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_1"]
+font_size = 18
+
+[node name="TomatoTestScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_1")
+
+[node name="TomatoPlant" parent="." instance=ExtResource("1_tomato")]
+position = Vector2(400, 300)
+scale = Vector2(0.5, 0.5)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 400.0
+
+[node name="StageLabel" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "当前阶段: 种子期"
+label_settings = SubResource("LabelSettings_1")
+
+[node name="ProgressLabel" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "生长进度: 16.7%"
+
+[node name="HSeparator" type="HSeparator" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="NextStageButton" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "下一阶段"
+
+[node name="ResetButton" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "重置"
+
+[node name="AutoGrowButton" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "自动生长: 关闭"
+
+[node name="HSeparator2" type="HSeparator" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "直接跳转到阶段:"
+
+[node name="StageButtons" type="GridContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Stage1Button" type="Button" parent="UI/VBoxContainer/StageButtons"]
+layout_mode = 2
+text = "阶段1"
+
+[node name="Stage2Button" type="Button" parent="UI/VBoxContainer/StageButtons"]
+layout_mode = 2
+text = "阶段2"
+
+[node name="Stage3Button" type="Button" parent="UI/VBoxContainer/StageButtons"]
+layout_mode = 2
+text = "阶段3"
+
+[node name="Stage4Button" type="Button" parent="UI/VBoxContainer/StageButtons"]
+layout_mode = 2
+text = "阶段4"
+
+[node name="Stage5Button" type="Button" parent="UI/VBoxContainer/StageButtons"]
+layout_mode = 2
+text = "阶段5"
+
+[node name="Stage6Button" type="Button" parent="UI/VBoxContainer/StageButtons"]
+layout_mode = 2
+text = "阶段6"
+
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/NextStageButton" to="." method="_on_next_stage_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/AutoGrowButton" to="." method="_on_auto_grow_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/StageButtons/Stage1Button" to="." method="_on_stage_1_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/StageButtons/Stage2Button" to="." method="_on_stage_2_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/StageButtons/Stage3Button" to="." method="_on_stage_3_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/StageButtons/Stage4Button" to="." method="_on_stage_4_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/StageButtons/Stage5Button" to="." method="_on_stage_5_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/StageButtons/Stage6Button" to="." method="_on_stage_6_pressed"]
