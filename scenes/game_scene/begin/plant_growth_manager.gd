@@ -106,6 +106,7 @@ func update_display():
 				play_spine_animation(target_node, current_stage)
 
 func play_spine_animation(spine_node: SpineSprite, stage: GrowthStage):
+	print('ininin')
 	"""播放Spine动画"""
 	match stage:
 		GrowthStage.GERMINATION:

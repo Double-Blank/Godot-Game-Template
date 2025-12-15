@@ -1,0 +1,29 @@
+Tomato stage.png
+size:1912,1939
+filter:Linear,Linear
+pma:true
+图层 3
+bounds:2,2,909,1024
+offsets:78,1,989,1026
+rotate:90
+图层 5
+bounds:2,913,1024,1024
+offsets:1,1,1026,1026
+图层 6
+bounds:1028,913,882,1024
+offsets:1,1,885,1026
+
+Tomato stage_2.png
+size:1907,1742
+filter:Linear,Linear
+pma:true
+图层 4
+bounds:885,2,853,1020
+offsets:50,1,905,1022
+rotate:90
+图层1
+bounds:885,857,1020,883
+offsets:1,1,1022,885
+图层2
+bounds:2,716,881,1024
+offsets:144,1,1026,1026

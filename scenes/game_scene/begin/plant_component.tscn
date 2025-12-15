@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b464gwurxxded"]
+[gd_scene load_steps=12 format=3 uid="uid://b464gwurxxded"]
 
 [ext_resource type="Script" uid="uid://bex0io08bo04b" path="res://scenes/game_scene/begin/plant_growth_manager.gd" id="1_1a2b3"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://cs7uuetomhd0" path="res://scenes/game_scene/begin/plant-stage-0/plat_root.tres" id="2_4c5d6"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cn0psyfead2o4" path="res://scenes/game_scene/begin/plant-stage-5/plant-stage-5.png" id="7_9m0n1"]
 [ext_resource type="Texture2D" uid="uid://bd5va5gib4ske" path="res://scenes/game_scene/begin/plant-stage-6/plant-stage-6.png" id="8_2o3p4"]
 [ext_resource type="Script" uid="uid://x3twdsmrj18a" path="res://scenes/game_scene/begin/plant_tower.gd" id="9_5q6r7"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://cbg2ne3dupt2m" path="res://assets/spine/Tomato-stage/new_spine_skeleton_data_resource.tres" id="10_eyk1j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
 height = 200.0
@@ -74,5 +75,16 @@ max_value = 500.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 102)
 shape = SubResource("CapsuleShape2D_1")
+
+[node name="TomatoStageManager" type="Node2D" parent="."]
+
+[node name="SpineSprite" type="SpineSprite" parent="TomatoStageManager"]
+position = Vector2(68, -4)
+scale = Vector2(0.126096, 0.126096)
+skeleton_data_res = ExtResource("10_eyk1j")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

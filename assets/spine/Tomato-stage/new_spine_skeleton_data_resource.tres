@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://cbg2ne3dupt2m"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://ct14wjdym8447" path="res://assets/spine/Tomato-stage/Tomato stage.atlas" id="1_spcka"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://d2vinvill7cu3" path="res://assets/spine/Tomato-stage/Tomato-stage.skel" id="2_kvghv"]
+
+[resource]
+atlas_res = ExtResource("1_spcka")
+skeleton_file_res = ExtResource("2_kvghv")

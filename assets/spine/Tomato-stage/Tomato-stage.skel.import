@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://d2vinvill7cu3"
+path="res://.godot/imported/Tomato-stage.skel-1e8c0a67bca9cf224208c3ea6cdd4f6f.spskel"
+
+[deps]
+
+source_file="res://assets/spine/Tomato-stage/Tomato-stage.skel"
+dest_files=["res://.godot/imported/Tomato-stage.skel-1e8c0a67bca9cf224208c3ea6cdd4f6f.spskel"]
+
+[params]
+

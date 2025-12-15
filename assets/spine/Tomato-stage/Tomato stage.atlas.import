@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://ct14wjdym8447"
+path="res://.godot/imported/Tomato stage.atlas-e8edf7684dc519f8975dccc8126fc0e2.spatlas"
+
+[deps]
+
+source_file="res://assets/spine/Tomato-stage/Tomato stage.atlas"
+dest_files=["res://.godot/imported/Tomato stage.atlas-e8edf7684dc519f8975dccc8126fc0e2.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"
