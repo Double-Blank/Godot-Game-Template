@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceaqjpro8mbwt"]
+
+[ext_resource type="PackedScene" uid="uid://8be4f4kyhukx" path="res://scenes/test_scenes/tomato-test-ui-scene.tscn" id="1_uu4qd"]
+
+[node name="TomatoTestScene" instance=ExtResource("1_uu4qd")]

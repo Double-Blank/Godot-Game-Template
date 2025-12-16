@@ -1,12 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bvxk8y7qg8xqr"]
 
-[ext_resource type="Script" path="res://scenes/components/plant-tomato-stage/tomato_stage_manager.gd" id="1_2h3vk"]
+[ext_resource type="Script" uid="uid://b3uau0t4cyj4k" path="res://scenes/components/plant-tomato-stage/tomato_stage_manager.gd" id="1_2h3vk"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://dx66dr3ud05vo" path="res://resources/spine-resource/tomato-stage.tres" id="2_cnqju"]
 
 [node name="TomatoPlant" type="Node2D"]
 script = ExtResource("1_2h3vk")
-auto_grow = false
-growth_interval = 2.0
 
 [node name="SpineSprite" type="SpineSprite" parent="."]
 skeleton_data_res = ExtResource("2_cnqju")

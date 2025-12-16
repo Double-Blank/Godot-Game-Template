@@ -111,5 +111,8 @@ func _show_next_image(animated : bool = true) -> void:
 
 func _ready() -> void:
 	SceneLoader.load_scene(get_next_scene_path(), true)
-	_add_textures_to_container(images)
-	_transition_in()
+	# 不添加任何图片到容器，跳过过场动画
+	# _add_textures_to_container(images)
+	# _transition_in()
+	# 直接跳转到下一个场景
+	_load_next_scene()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://8be4f4kyhukx"]
 
-[ext_resource type="PackedScene" path="res://scenes/components/plant-tomato-stage/tomato_plant.tscn" id="1_tomato"]
+[ext_resource type="PackedScene" uid="uid://bvxk8y7qg8xqr" path="res://scenes/components/plant-tomato-stage/tomato_plant.tscn" id="1_tomato"]
 
 [sub_resource type="GDScript" id="GDScript_1"]
 script/source = "extends Control
