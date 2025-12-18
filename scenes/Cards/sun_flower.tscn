@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bna2p1emk1ych"]
+
+[ext_resource type="PackedScene" uid="uid://pp140i5yv0mm" path="res://scenes/Cards/card.tscn" id="1_2s7kd"]
+[ext_resource type="Resource" uid="uid://d4ekdk53su3bh" path="res://scenes/Cards/res/sunFlower.tres" id="2_sw2mh"]
+
+[node name="SunFlower" instance=ExtResource("1_2s7kd")]
+card_res = ExtResource("2_sw2mh")

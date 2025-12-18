@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardRes" load_steps=4 format=3 uid="uid://d4ekdk53su3bh"]
+
+[ext_resource type="Texture2D" uid="uid://cxlxdl3gkvkj4" path="res://assets/card/card_sunflower2.png" id="1_u5ss2"]
+[ext_resource type="Texture2D" uid="uid://dl6b1yms21s3n" path="res://assets/card/card_sunflower.png" id="2_cmp78"]
+[ext_resource type="Script" uid="uid://5jt6kagixrys" path="res://scenes/Cards/res/card_res.gd" id="3_f5uvx"]
+
+[resource]
+script = ExtResource("3_f5uvx")
+sun_num = 25
+cool_time = 20.0
+card_light = ExtResource("2_cmp78")
+card_dark = ExtResource("1_u5ss2")
+max_health = 100
+metadata/_custom_type_script = "uid://5jt6kagixrys"

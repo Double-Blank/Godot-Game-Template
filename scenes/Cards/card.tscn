@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://pp140i5yv0mm"]
+
+[ext_resource type="Script" uid="uid://1rahvvprox3n" path="res://scenes/Cards/card.gd" id="1_ufjqd"]
+[ext_resource type="Script" uid="uid://cc5msnl1phunp" path="res://scenes/StateMachine/state_machine.gd" id="3_ad4w7"]
+[ext_resource type="Script" uid="uid://fkjw25d4ym4h" path="res://scenes/Cards/States/disable.gd" id="4_t5m02"]
+[ext_resource type="Script" uid="uid://vqwj4wat7mup" path="res://scenes/Cards/States/cooling.gd" id="5_jqqrt"]
+[ext_resource type="Script" uid="uid://dmtiir1ikcxuo" path="res://scenes/Cards/States/waiting_sun.gd" id="6_ufjqd"]
+[ext_resource type="Script" uid="uid://br2b2ebpau1vf" path="res://scenes/Cards/States/ready.gd" id="7_kumxd"]
+[ext_resource type="Script" uid="uid://fwwgrjhjq0su" path="res://scenes/Cards/States/click.gd" id="8_3w8lm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8vim"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t5m02"]
+bg_color = Color(0, 0, 0, 0.72549)
+
+[node name="Card" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ufjqd")
+
+[node name="CardLight" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CardDark" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CardCool" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 70.0
+theme_override_styles/background = SubResource("StyleBoxFlat_e8vim")
+theme_override_styles/fill = SubResource("StyleBoxFlat_t5m02")
+value = 8.0
+fill_mode = 2
+show_percentage = false
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
+script = ExtResource("3_ad4w7")
+init_state = NodePath("Cooling")
+metadata/_custom_type_script = "uid://cc5msnl1phunp"
+
+[node name="Disable" type="Node" parent="StateMachine"]
+script = ExtResource("4_t5m02")
+metadata/_custom_type_script = "uid://b6pffe8t6p7ui"
+
+[node name="Cooling" type="Node" parent="StateMachine"]
+script = ExtResource("5_jqqrt")
+metadata/_custom_type_script = "uid://b6pffe8t6p7ui"
+
+[node name="WaitingSun" type="Node" parent="StateMachine"]
+script = ExtResource("6_ufjqd")
+metadata/_custom_type_script = "uid://b6pffe8t6p7ui"
+
+[node name="Ready" type="Node" parent="StateMachine"]
+script = ExtResource("7_kumxd")
+metadata/_custom_type_script = "uid://b6pffe8t6p7ui"
+
+[node name="Click" type="Node" parent="StateMachine"]
+script = ExtResource("8_3w8lm")
+metadata/_custom_type_script = "uid://b6pffe8t6p7ui"
