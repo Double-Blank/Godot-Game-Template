@@ -11,7 +11,6 @@ var sun:
 	set(value):
 		sun = value
 		if start_label:
-			print('ininin')
 			start_label.text = str(value)
 			for card in card_list:
 				card._is_sun_enough(value)
