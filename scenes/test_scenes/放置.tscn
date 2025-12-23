@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cusf8i0u7r17f"]
+[gd_scene load_steps=13 format=3 uid="uid://cusf8i0u7r17f"]
 
 [ext_resource type="Texture2D" uid="uid://bcb2ywtdd7xis" path="res://assets/background/background_0007_背景.png" id="1_g4wqy"]
+[ext_resource type="Script" uid="uid://cb5xn4cny3p7g" path="res://scenes/test_scenes/sun_manager.gd" id="1_jprwh"]
 [ext_resource type="Texture2D" uid="uid://5fbig622l4e7" path="res://assets/background/background_0006_云.png" id="2_swlr7"]
 [ext_resource type="Texture2D" uid="uid://bhpt4vm0snfmi" path="res://assets/background/background_0005_绿草地.png" id="2_tq01k"]
 [ext_resource type="Texture2D" uid="uid://w7l5nuorrib2" path="res://assets/background/background_0004_小草.png" id="3_swlr7"]
@@ -9,10 +10,17 @@
 [ext_resource type="Texture2D" uid="uid://bcnqub7hwwogw" path="res://assets/background/background_0001_可爱石头.png" id="6_o8bc1"]
 [ext_resource type="Texture2D" uid="uid://d4g7oi7wwcwih" path="res://assets/background/background_0000_石头.png" id="7_tssem"]
 [ext_resource type="Texture2D" uid="uid://cdouwu1loliem" path="res://assets/background/ChooserBackground.png" id="9_swlr7"]
+[ext_resource type="Script" uid="uid://ctj7q10pc42ta" path="res://scenes/test_scenes/ui.gd" id="10_o8bc1"]
 [ext_resource type="PackedScene" uid="uid://bna2p1emk1ych" path="res://scenes/Cards/sun_flower.tscn" id="10_s2olt"]
 
 [node name="放置" type="Node2D"]
 position = Vector2(484, 346)
+
+[node name="Manager" type="Node" parent="."]
+
+[node name="SunManager" type="Node" parent="Manager" node_paths=PackedStringArray("start_label")]
+script = ExtResource("1_jprwh")
+start_label = NodePath("../../UI/ChooseCardBg/Sun_Label")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -512.0
@@ -57,7 +65,9 @@ position = Vector2(1156, 636.25)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_tssem")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("card_list") groups=["UI"]]
+script = ExtResource("10_o8bc1")
+card_list = [NodePath("ChooseCardBg/HBoxContainer/SunFlower")]
 
 [node name="ChooseCardBg" type="TextureRect" parent="UI"]
 offset_right = 40.0
@@ -74,3 +84,16 @@ theme_override_constants/separation = 55
 
 [node name="SunFlower" parent="UI/ChooseCardBg/HBoxContainer" instance=ExtResource("10_s2olt")]
 layout_mode = 2
+
+[node name="Sun_Label" type="Label" parent="UI/ChooseCardBg"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -34.0
+offset_right = 75.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "100"
+horizontal_alignment = 1

@@ -6,7 +6,14 @@ extends Control
 @onready var card_cool: ProgressBar = $CardCool
 
 var cd_time := 0.0
+var is_sun_enough := false
 
 func _ready() -> void:
 	card_light.texture = card_res.card_light
 	card_dark.texture = card_res.card_dark
+
+func _is_sun_enough(sun_num):
+	if sun_num >= card_res.sun_num:
+		is_sun_enough = true
+	else:
+		is_sun_enough = false

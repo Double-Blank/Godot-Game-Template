@@ -2,8 +2,8 @@ extends State
 @onready var card: Control = $"../.."
 
 func enter():
-	print('cooling enter')
 	card.cd_time = 0.0
+	#card.card_dark.visible = true
 	
 	# 获取CardCool节点
 	var card_cool = card.get_node("CardCool") as ProgressBar

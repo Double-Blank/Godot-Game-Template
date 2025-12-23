@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://pp140i5yv0mm"]
+[gd_scene load_steps=11 format=3 uid="uid://pp140i5yv0mm"]
 
 [ext_resource type="Script" uid="uid://1rahvvprox3n" path="res://scenes/Cards/card.gd" id="1_ufjqd"]
 [ext_resource type="Script" uid="uid://cc5msnl1phunp" path="res://scenes/StateMachine/state_machine.gd" id="3_ad4w7"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://dmtiir1ikcxuo" path="res://scenes/Cards/States/waiting_sun.gd" id="6_ufjqd"]
 [ext_resource type="Script" uid="uid://br2b2ebpau1vf" path="res://scenes/Cards/States/ready.gd" id="7_kumxd"]
 [ext_resource type="Script" uid="uid://fwwgrjhjq0su" path="res://scenes/Cards/States/click.gd" id="8_3w8lm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jrtpr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8vim"]
 bg_color = Color(1, 1, 1, 0)
@@ -24,6 +26,17 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Button" type="Button" parent="CardLight"]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 70.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jrtpr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jrtpr")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_jrtpr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jrtpr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jrtpr")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jrtpr")
+
 [node name="CardDark" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 40.0
@@ -33,6 +46,7 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 50.0
 offset_bottom = 70.0
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_e8vim")
 theme_override_styles/fill = SubResource("StyleBoxFlat_t5m02")
 value = 8.0
