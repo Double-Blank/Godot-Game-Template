@@ -30,6 +30,7 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 50.0
 offset_bottom = 70.0
+mouse_default_cursor_shape = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jrtpr")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_jrtpr")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_jrtpr")
@@ -77,3 +78,5 @@ metadata/_custom_type_script = "uid://b6pffe8t6p7ui"
 [node name="Click" type="Node" parent="StateMachine"]
 script = ExtResource("8_3w8lm")
 metadata/_custom_type_script = "uid://b6pffe8t6p7ui"
+
+[connection signal="pressed" from="CardLight/Button" to="." method="_on_button_pressed"]

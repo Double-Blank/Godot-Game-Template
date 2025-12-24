@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbv6kaki1oyg1"]
+
+[ext_resource type="PackedScene" uid="uid://pp140i5yv0mm" path="res://scenes/Cards/card.tscn" id="1_qpl26"]
+[ext_resource type="Resource" uid="uid://cw18c7jmpe2of" path="res://scenes/Cards/res/peaShooter.tres" id="2_fp8aj"]
+
+[node name="Peashooter" instance=ExtResource("1_qpl26")]
+card_res = ExtResource("2_fp8aj")

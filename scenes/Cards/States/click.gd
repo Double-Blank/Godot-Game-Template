@@ -1,7 +1,7 @@
 extends State
 
 func enter():
-	print('')
+	print('Click')
 
 func update(_delta: float):pass
 

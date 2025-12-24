@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cusf8i0u7r17f"]
+[gd_scene load_steps=15 format=3 uid="uid://cusf8i0u7r17f"]
 
 [ext_resource type="Texture2D" uid="uid://bcb2ywtdd7xis" path="res://assets/background/background_0007_背景.png" id="1_g4wqy"]
 [ext_resource type="Script" uid="uid://cb5xn4cny3p7g" path="res://scenes/test_scenes/sun_manager.gd" id="1_jprwh"]
+[ext_resource type="Script" uid="uid://b0bs0m3atygx" path="res://scenes/test_scenes/hand_manager.gd" id="2_ry2wm"]
 [ext_resource type="Texture2D" uid="uid://5fbig622l4e7" path="res://assets/background/background_0006_云.png" id="2_swlr7"]
 [ext_resource type="Texture2D" uid="uid://bhpt4vm0snfmi" path="res://assets/background/background_0005_绿草地.png" id="2_tq01k"]
 [ext_resource type="Texture2D" uid="uid://w7l5nuorrib2" path="res://assets/background/background_0004_小草.png" id="3_swlr7"]
@@ -12,9 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://cdouwu1loliem" path="res://assets/background/ChooserBackground.png" id="9_swlr7"]
 [ext_resource type="Script" uid="uid://ctj7q10pc42ta" path="res://scenes/test_scenes/ui.gd" id="10_o8bc1"]
 [ext_resource type="PackedScene" uid="uid://bna2p1emk1ych" path="res://scenes/Cards/sun_flower.tscn" id="10_s2olt"]
+[ext_resource type="PackedScene" uid="uid://cbv6kaki1oyg1" path="res://scenes/Cards/res/peashooter.tscn" id="13_tssem"]
 
 [node name="放置" type="Node2D"]
-position = Vector2(484, 346)
 
 [node name="Manager" type="Node" parent="."]
 
@@ -22,52 +23,56 @@ position = Vector2(484, 346)
 script = ExtResource("1_jprwh")
 start_label = NodePath("../../UI/ChooseCardBg/Sun_Label")
 
+[node name="HandManager" type="Node2D" parent="Manager" node_paths=PackedStringArray("Plants")]
+script = ExtResource("2_ry2wm")
+Plants = NodePath("../../Plants")
+
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -512.0
 offset_top = -373.0
 offset_right = 2048.0
 offset_bottom = 933.0
+size_flags_horizontal = 0
 texture = ExtResource("1_g4wqy")
-metadata/_edit_use_anchors_ = true
 
 [node name="Background0006云" type="Sprite2D" parent="TextureRect"]
-position = Vector2(672, 420.25)
+position = Vector2(1154, 573.25)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_swlr7")
 
 [node name="Background0005绿草地" type="Sprite2D" parent="TextureRect"]
-position = Vector2(670, 689.25)
+position = Vector2(1152, 842.25)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_tq01k")
 
 [node name="Background0004小草" type="Sprite2D" parent="TextureRect"]
-position = Vector2(348, 653)
+position = Vector2(830, 806)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_swlr7")
 
 [node name="Background0002藤曼" type="Sprite2D" parent="TextureRect"]
-position = Vector2(597, 650)
+position = Vector2(1079, 803)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_s2olt")
 
 [node name="Background0003藤蔓2" type="Sprite2D" parent="TextureRect"]
-position = Vector2(809, 621)
+position = Vector2(1291, 774)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_jprwh")
 
 [node name="Background0001可爱石头" type="Sprite2D" parent="TextureRect"]
-position = Vector2(938, 556)
+position = Vector2(1420, 709)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_o8bc1")
 
 [node name="Background0000石头" type="Sprite2D" parent="TextureRect"]
-position = Vector2(1156, 636.25)
+position = Vector2(1638, 789.25)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_tssem")
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("card_list") groups=["UI"]]
 script = ExtResource("10_o8bc1")
-card_list = [NodePath("ChooseCardBg/HBoxContainer/SunFlower")]
+card_list = [NodePath("ChooseCardBg/HBoxContainer/SunFlower"), NodePath("ChooseCardBg/HBoxContainer/Peashooter")]
 
 [node name="ChooseCardBg" type="TextureRect" parent="UI"]
 offset_right = 40.0
@@ -85,6 +90,9 @@ theme_override_constants/separation = 55
 [node name="SunFlower" parent="UI/ChooseCardBg/HBoxContainer" instance=ExtResource("10_s2olt")]
 layout_mode = 2
 
+[node name="Peashooter" parent="UI/ChooseCardBg/HBoxContainer" instance=ExtResource("13_tssem")]
+layout_mode = 2
+
 [node name="Sun_Label" type="Label" parent="UI/ChooseCardBg"]
 layout_mode = 1
 anchors_preset = 2
@@ -97,3 +105,10 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "100"
 horizontal_alignment = 1
+
+[node name="Plants" type="Node2D" parent="."]
+
+[node name="TestLabel" type="Label" parent="Plants"]
+offset_right = 100.0
+offset_bottom = 23.0
+text = "测试文本"
