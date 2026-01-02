@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm727t6dkb31y"]
+
+[ext_resource type="Script" uid="uid://sqcvdu38fdj5" path="res://scenes/test_scenes/cell.gd" id="1_3fjn8"]
+
+[node name="Cell" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 43.0
+offset_bottom = 70.0
+mouse_filter = 1
+script = ExtResource("1_3fjn8")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="CardShadow" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

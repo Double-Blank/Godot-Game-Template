@@ -75,7 +75,7 @@ grow_vertical = 2
 script = SubResource("GDScript_1")
 
 [node name="TomatoPlant" parent="." instance=ExtResource("1_tomato")]
-position = Vector2(400, 300)
+position = Vector2(637, 425)
 scale = Vector2(0.5, 0.5)
 
 [node name="UI" type="Control" parent="."]

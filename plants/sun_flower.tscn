@@ -6,8 +6,8 @@
 [node name="SunFlower" instance=ExtResource("1_83e2o")]
 
 [node name="SpineSprite" type="SpineSprite" parent="." index="0"]
-position = Vector2(-2.00001, 200)
-scale = Vector2(0.683, 0.683)
+position = Vector2(0, 27)
+scale = Vector2(0.1, 0.1)
 skeleton_data_res = ExtResource("2_lev3k")
 preview_skin = "Default"
 preview_animation = "walk"

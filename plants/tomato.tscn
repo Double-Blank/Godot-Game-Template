@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://boc6y1klnrwsu"]
+
+[ext_resource type="PackedScene" uid="uid://dfv3b1q6meq0k" path="res://plants/plant_template.tscn" id="1_dqhe1"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://dx66dr3ud05vo" path="res://resources/spine-resource/tomato-stage.tres" id="2_xbxrs"]
+
+[node name="Tomato" instance=ExtResource("1_dqhe1")]
+
+[node name="SpineSprite" type="SpineSprite" parent="." index="0"]
+skeleton_data_res = ExtResource("2_xbxrs")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

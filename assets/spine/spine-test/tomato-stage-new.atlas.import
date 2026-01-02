@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://q3s7wlx7ypvw"
+path="res://.godot/imported/tomato-stage-new.atlas-6fde7862c66851ded4c5eb79c6f796b6.spatlas"
+
+[deps]
+
+source_file="res://assets/spine/spine-test/tomato-stage-new.atlas"
+dest_files=["res://.godot/imported/tomato-stage-new.atlas-6fde7862c66851ded4c5eb79c6f796b6.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"
