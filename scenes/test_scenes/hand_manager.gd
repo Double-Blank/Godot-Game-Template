@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var Plants: Node2D
-@export var cell: Cell
+@export var cells: GridContainer
 
 var UINode:UI
 var card_list:Array[CardTemplate]
@@ -16,9 +16,10 @@ func _ready() -> void:
 	for card in card_list:
 		if(card != null):
 			card.card_click.connect(_on_card_click)
-	cell.click_cell.connect(_on_click_cell)
-	cell.cell_mouse_enter.connect(_on_mouse_enter)
-	cell.cell_mouse_exit.connect(_on_mouse_exit)
+	for cell in cells.get_children():
+		cell.click_cell.connect(_on_click_cell)
+		cell.cell_mouse_enter.connect(_on_mouse_enter)
+		cell.cell_mouse_exit.connect(_on_mouse_exit)
 
 func _on_card_click(clicked_card_res: CardRes):
 	if not select_sprite:
@@ -41,6 +42,7 @@ func _on_click_cell(cell_click: Cell):
 		if card_res.plant_scene:
 			#var spine_sprite: SpineSprite = cell_click.card_shadow.get_node("SpineSprite") 测试getnode
 			var plant_instance = card_res.plant_scene.instantiate()
+			plant_instance.position = cell_click.plant_set.size / 2
 			cell_click.plant_set.add_child(plant_instance)
 			#plant_instance.global_position = cell_click.global_position
 			# 查找TomatoStageManager并设置为STAGE_1

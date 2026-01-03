@@ -18,10 +18,10 @@
 script = ExtResource("1_jprwh")
 start_label = NodePath("../../UI/ChooseCardBg/Sun_Label")
 
-[node name="HandManager" type="Node2D" parent="Manager" node_paths=PackedStringArray("Plants", "cell")]
+[node name="HandManager" type="Node2D" parent="Manager" node_paths=PackedStringArray("Plants", "cells")]
 script = ExtResource("2_ry2wm")
 Plants = NodePath("../../Plants")
-cell = NodePath("../../UI/Cell")
+cells = NodePath("../../UI/Cells")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 2811.0
@@ -71,23 +71,134 @@ theme_override_font_sizes/font_size = 24
 text = "100"
 horizontal_alignment = 1
 
-[node name="Cell" parent="UI" instance=ExtResource("15_xl0cn")]
-offset_left = 533.0
-offset_top = 262.0
-offset_right = 606.0
-offset_bottom = 336.0
-size_flags_horizontal = 0
-size_flags_vertical = 4
-
 [node name="Cells" type="GridContainer" parent="UI"]
-visible = false
-offset_left = 339.0
-offset_top = 186.0
-offset_right = 1069.0
-offset_bottom = 630.0
+offset_left = 332.0
+offset_top = 214.0
+offset_right = 1062.0
+offset_bottom = 658.0
 theme_override_constants/h_separation = 73
 theme_override_constants/v_separation = 74
 columns = 10
+
+[node name="Cell" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell2" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell3" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell4" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell5" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell6" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell7" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell8" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell9" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell10" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell11" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell12" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell13" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell14" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell15" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell16" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell17" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell18" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell19" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell20" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell21" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell22" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell23" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell24" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell25" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell26" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell27" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell28" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell29" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell30" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell31" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell32" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell33" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell34" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell35" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell36" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell37" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell38" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell39" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
+
+[node name="Cell40" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
+layout_mode = 2
 
 [node name="Plants" type="Node2D" parent="."]
 
