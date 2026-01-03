@@ -2,6 +2,7 @@ extends Control
 class_name Cell
 
 @onready var card_shadow: TextureRect = $CardShadow
+@onready var plant_set: TextureRect = $PlantSet
 
 signal click_cell
 signal cell_mouse_enter
