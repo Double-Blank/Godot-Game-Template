@@ -15,6 +15,7 @@ func _on_button_pressed() -> void:
 		click_cell.emit(self)
 
 func _on_button_mouse_entered() -> void:
+	print('ininin')
 	if not is_plant:
 		cell_mouse_enter.emit(self)
 
