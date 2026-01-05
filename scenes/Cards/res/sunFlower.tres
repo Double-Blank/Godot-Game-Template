@@ -15,5 +15,6 @@ card_light = ExtResource("2_cmp78")
 card_dark = ExtResource("1_u5ss2")
 max_health = 100
 card_shadow = ExtResource("3_f5lng")
+card_type = 0
 plant_scene = ExtResource("3_cmp78")
 metadata/_custom_type_script = "uid://5jt6kagixrys"

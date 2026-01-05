@@ -3,7 +3,7 @@ extends State
 
 func enter():
 	card.card_dark.visible = false
-	print('等待点击')
+	print('植物进入等待点击状态')
 
 func update(_delta: float):
 	if not card.is_sun_enough:

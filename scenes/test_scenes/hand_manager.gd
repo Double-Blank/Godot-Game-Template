@@ -52,12 +52,16 @@ func _on_click_cell(cell_click: Cell):
 		# 清理选择状态
 		if select_sprite:
 			select_sprite.queue_free()  # 删除选择精灵
+			
+		for card in card_list:
+			if card.card_res.card_type == card_res.card_type:
+				print("ininin set plant ", card.card_res.card_name)
+				card.is_plant = true
+				card.card_plant.emit(card.card_res.sun_num)
+				break
 		select_sprite = null
 		card_res = null
 		cell_click.card_shadow.texture = null
-		
-		
-		
 
 func _on_mouse_enter(cell_enter: Cell):
 	# 防止重复触发

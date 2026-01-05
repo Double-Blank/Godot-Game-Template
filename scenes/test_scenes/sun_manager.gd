@@ -19,4 +19,10 @@ var sun:
 func _ready() -> void:
 	UINode = get_tree().get_first_node_in_group("UI")
 	card_list = UINode.card_list
+	for card in card_list:
+		card.card_plant.connect(_on_card_plant)
 	sun = start_sun
+
+func _on_card_plant(sun_num) -> void:
+	sun -= sun_num
+	pass

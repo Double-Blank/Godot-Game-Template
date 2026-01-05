@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://b65ta2gq5mbm6"
+path="res://.godot/imported/毛毛虫.atlas-6696a6ef09946712c5a411bfc5fc9a7f.spatlas"
+
+[deps]
+
+source_file="res://assets/spine/maomaochong/毛毛虫.atlas"
+dest_files=["res://.godot/imported/毛毛虫.atlas-6696a6ef09946712c5a411bfc5fc9a7f.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

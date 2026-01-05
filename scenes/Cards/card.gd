@@ -8,15 +8,20 @@ extends Control
 var cd_time := 0.0
 var is_sun_enough := false
 var is_click := false
+var is_plant := false
+var is_disabled := true
 
+# 定义点击种植信号
 signal card_click
+
+# 定义点击种植信号
+signal card_plant
 
 func _ready() -> void:
 	card_light.texture = card_res.card_light
 	card_dark.texture = card_res.card_dark
 
 func _is_sun_enough(sun_num):
-	print(card_res.card_name + str(card_res.sun_num))
 	if sun_num >= card_res.sun_num:
 		is_sun_enough = true
 	else:

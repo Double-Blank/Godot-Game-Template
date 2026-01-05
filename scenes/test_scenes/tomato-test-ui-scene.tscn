@@ -19,10 +19,11 @@ func _ready():
 
 func _on_stage_changed(new_stage):
 	update_ui()
-	print(\"番茄生长阶段变化: \", tomato_plant.get_stage_name())
+	#print(\"番茄生长阶段变化: \", tomato_plant.get_stage_name())
 
 func _on_growth_completed():
-	print(\"番茄生长完成！\")
+	pass
+	#print(\"番茄生长完成！\")
 
 func update_ui():
 	stage_label.text = \"当前阶段: \" + tomato_plant.get_stage_name()

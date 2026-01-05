@@ -15,4 +15,5 @@ card_light = ExtResource("2_udpuj")
 card_dark = ExtResource("1_ssuqv")
 max_health = 100
 card_shadow = ExtResource("3_udpuj")
+card_type = 0
 plant_scene = ExtResource("4_udpuj")

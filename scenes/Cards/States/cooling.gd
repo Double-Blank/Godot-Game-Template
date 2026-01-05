@@ -1,7 +1,9 @@
 extends State
-@onready var card: Control = $"../.."
+@onready var card: CardTemplate = $"../.."
 
 func enter():
+	print("植物进入冷却状态")
+	await get_tree().create_timer(0.0).timeout # 等待1帧 初始化进度条
 	card.cd_time = 0.0
 	#card.card_dark.visible = true
 	
@@ -9,6 +11,9 @@ func enter():
 	var card_cool = card.get_node("CardCool") as ProgressBar
 	if card_cool:
 		card_cool.value = 0
+		card.card_dark.visible = true
+		card.is_click = false
+	
 
 func update(_delta: float):
 	card.cd_time += _delta

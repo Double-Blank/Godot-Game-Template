@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://js461l5qfvcc"
+path="res://.godot/imported/bowandarrow.skel-c3fdbd93705e064c04b290bff0e5395a.spskel"
+
+[deps]
+
+source_file="res://assets/spine/bow/bowandarrow.skel"
+dest_files=["res://.godot/imported/bowandarrow.skel-c3fdbd93705e064c04b290bff0e5395a.spskel"]
+
+[params]
+
