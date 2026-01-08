@@ -10,9 +10,15 @@ var card_res: CardRes
 var select_sprite: Sprite2D  # 使用 Sprite2D 来显示所选
 var mouse_in_cell: bool = false  # 添加状态跟踪，防止闪烁
 
+# 创建绿色样式
+var green_style:StyleBoxFlat = StyleBoxFlat.new()
+# 创建 empty 样式
+var empty_style:StyleBoxEmpty = StyleBoxEmpty.new()
 func _ready() -> void:
 	UINode = get_tree().get_first_node_in_group("UI")
 	card_list = UINode.card_list
+	
+	
 	for card in card_list:
 		if(card != null):
 			card.card_click.connect(_on_card_click)
@@ -22,11 +28,18 @@ func _ready() -> void:
 		cell.cell_mouse_exit.connect(_on_mouse_exit)
 
 func _on_card_click(clicked_card_res: CardRes):
+	# 创建绿色样式
+	green_style.bg_color = Color(0.431, 0.686, 0.439, 0.31)  # RGB 值的十进制表示
+	
 	if not select_sprite:
 		select_sprite = Sprite2D.new()
 		select_sprite.texture = clicked_card_res.card_shadow
 		add_child(select_sprite)
 		self.card_res = clicked_card_res
+	for cell in cells.get_children():
+		var button = cell.get_node("Button")
+		# 将绿色样式应用到按钮
+		button.add_theme_stylebox_override("normal", green_style)
 	
 	select_sprite.global_position = get_global_mouse_position()
 
@@ -36,26 +49,29 @@ func _process(delta: float) -> void:
 		select_sprite.global_position = get_global_mouse_position()
 
 func _on_click_cell(cell_click: Cell):
+	for cell in cells.get_children():
+		var button = cell.get_node("Button")
+		# 将绿色样式应用到按钮
+		button.add_theme_stylebox_override("normal", empty_style)
 	if select_sprite:
 		cell_click.is_plant = true
 		# 实例化植物场景
 		if card_res.plant_scene:
 			#var spine_sprite: SpineSprite = cell_click.card_shadow.get_node("SpineSprite") 测试getnode
 			var plant_instance = card_res.plant_scene.instantiate()
-			plant_instance.position = cell_click.plant_set.size / 2
-			cell_click.plant_set.add_child(plant_instance)
+			plant_instance.position = cell_click.something_set.size / 2
+			cell_click.something_set.add_child(plant_instance)
 			#plant_instance.global_position = cell_click.global_position
 			# 查找TomatoStageManager并设置为STAGE_1
-			var stage_manager = plant_instance.find_child("TomatoStageManager", true, false)
-			if stage_manager and stage_manager is TomatoStageManager:
-				stage_manager.grow_to_stage(TomatoStageManager.GrowthStage.STAGE_1)
+			#var stage_manager = plant_instance.find_child("TomatoStageManager", true, false)
+			#if stage_manager and stage_manager is TomatoStageManager:
+				#stage_manager.grow_to_stage(TomatoStageManager.GrowthStage.STAGE_1)
 		# 清理选择状态
 		if select_sprite:
 			select_sprite.queue_free()  # 删除选择精灵
 			
 		for card in card_list:
 			if card.card_res.card_type == card_res.card_type:
-				print("ininin set plant ", card.card_res.card_name)
 				card.is_plant = true
 				card.card_plant.emit(card.card_res.sun_num)
 				break

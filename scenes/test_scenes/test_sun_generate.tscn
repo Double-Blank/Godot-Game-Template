@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbi37u3dl7n20"]
+
+[ext_resource type="Script" uid="uid://bjhdml2ky3mht" path="res://scenes/test_scenes/SunSpawner.gd" id="1_ojf73"]
+[ext_resource type="PackedScene" uid="uid://6b5vnudxrjkt" path="res://scenes/components/sunshine-generator/Sun.tscn" id="1_u28rt"]
+
+[node name="SunGenerate" type="Node2D"]
+script = ExtResource("1_ojf73")
+sun_scene = ExtResource("1_u28rt")
+
+[node name="Sun" parent="." instance=ExtResource("1_u28rt")]
+visible = false
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.537
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

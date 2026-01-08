@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://urh08lse6cqc"]
+[gd_scene load_steps=9 format=3 uid="uid://urh08lse6cqc"]
 
+[ext_resource type="Script" uid="uid://cp4iwfwiws0nf" path="res://scenes/test_scenes/弹窗&射箭.gd" id="1_uvpq6"]
 [ext_resource type="Theme" uid="uid://d1svfjs6tmjkh" path="res://resources/themes/expedition.tres" id="1_vum0u"]
 [ext_resource type="FontFile" uid="uid://fgsr5c1yjqkc" path="res://assets/fount/lxgw-wenkai-v1.521/LXGWWenKai-Regular.ttf" id="2_uvpq6"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://c2po8ks8x421s" path="res://resources/spine-resource/bowaim.tres" id="3_womhx"]
 [ext_resource type="Script" uid="uid://dkn5ouonp6aer" path="res://scenes/test_scenes/spine_sprite.gd" id="4_4xkqv"]
+[ext_resource type="Script" uid="uid://8flujglqptxg" path="res://scenes/test_scenes/button.gd" id="4_womhx"]
+[ext_resource type="Script" uid="uid://d3a6lx4118k3d" path="res://scenes/test_scenes/player.gd" id="7_uo5gc"]
+[ext_resource type="Script" uid="uid://e75l12xs0h4e" path="res://scenes/test_scenes/accept.gd" id="8_g5uu7"]
 
 [node name="弹窗" type="Node2D"]
+script = ExtResource("1_uvpq6")
 
 [node name="Button" type="Button" parent="."]
 offset_right = 106.0
@@ -13,6 +18,7 @@ offset_bottom = 34.0
 theme = ExtResource("1_vum0u")
 theme_override_fonts/font = ExtResource("2_uvpq6")
 text = "设置"
+script = ExtResource("4_womhx")
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = 254.0
@@ -34,3 +40,28 @@ show_behind_parent = true
 position = Vector2(500, 0)
 bone_name = "target3"
 bone_mode = 1
+
+[node name="Player" type="Button" parent="."]
+offset_left = 21.0
+offset_top = 210.0
+offset_right = 29.0
+offset_bottom = 218.0
+text = "Player"
+script = ExtResource("7_uo5gc")
+
+[node name="Accept" type="GridContainer" parent="."]
+offset_left = 28.0
+offset_top = 282.0
+offset_right = 84.0
+offset_bottom = 340.0
+script = ExtResource("8_g5uu7")
+
+[node name="Label" type="Label" parent="Accept"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Accept"]
+layout_mode = 2
+text = "接收者"
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="Player" to="Player" method="_on_pressed"]

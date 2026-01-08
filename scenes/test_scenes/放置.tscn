@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cb5xn4cny3p7g" path="res://scenes/test_scenes/sun_manager.gd" id="1_jprwh"]
 [ext_resource type="Script" uid="uid://b0bs0m3atygx" path="res://scenes/test_scenes/hand_manager.gd" id="2_ry2wm"]
-[ext_resource type="Texture2D" uid="uid://dcffyu6yfc45v" path="res://assets/background/bg1.png" id="3_xl0cn"]
+[ext_resource type="Texture2D" uid="uid://dcffyu6yfc45v" path="res://assets/background/bg1.png" id="3_swlr7"]
 [ext_resource type="PackedScene" uid="uid://ucpqtf3ctck4" path="res://scenes/Cards/tomato.tscn" id="6_swlr7"]
+[ext_resource type="PackedScene" uid="uid://c8p1i5dcx8gau" path="res://scenes/components/sunshine-generator/generator.tscn" id="9_s2olt"]
 [ext_resource type="Texture2D" uid="uid://cdouwu1loliem" path="res://assets/background/ChooserBackground.png" id="9_swlr7"]
 [ext_resource type="Script" uid="uid://ctj7q10pc42ta" path="res://scenes/test_scenes/ui.gd" id="10_o8bc1"]
-[ext_resource type="PackedScene" uid="uid://bna2p1emk1ych" path="res://scenes/Cards/sun_flower.tscn" id="10_s2olt"]
 [ext_resource type="PackedScene" uid="uid://cbv6kaki1oyg1" path="res://scenes/Cards/res/peashooter.tscn" id="13_tssem"]
 [ext_resource type="PackedScene" uid="uid://bm727t6dkb31y" path="res://scenes/test_scenes/cell.tscn" id="15_xl0cn"]
 
@@ -28,11 +28,11 @@ offset_right = 2811.0
 offset_bottom = 1434.0
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 0
-texture = ExtResource("3_xl0cn")
+texture = ExtResource("3_swlr7")
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("card_list") groups=["UI"]]
 script = ExtResource("10_o8bc1")
-card_list = [NodePath("ChooseCardBg/HBoxContainer/Tomato"), NodePath("ChooseCardBg/HBoxContainer/SunFlower"), NodePath("ChooseCardBg/HBoxContainer/Peashooter")]
+card_list = [NodePath("ChooseCardBg/HBoxContainer/Tomato"), NodePath("ChooseCardBg/HBoxContainer/Peashooter")]
 
 [node name="ChooseCardBg" type="TextureRect" parent="UI"]
 offset_right = 40.0
@@ -48,10 +48,6 @@ offset_bottom = 77.0
 theme_override_constants/separation = 55
 
 [node name="Tomato" parent="UI/ChooseCardBg/HBoxContainer" instance=ExtResource("6_swlr7")]
-layout_mode = 2
-
-[node name="SunFlower" parent="UI/ChooseCardBg/HBoxContainer" instance=ExtResource("10_s2olt")]
-visible = false
 layout_mode = 2
 
 [node name="Peashooter" parent="UI/ChooseCardBg/HBoxContainer" instance=ExtResource("13_tssem")]
@@ -71,12 +67,12 @@ text = "100"
 horizontal_alignment = 1
 
 [node name="Cells" type="GridContainer" parent="UI"]
-offset_left = 332.0
-offset_top = 214.0
-offset_right = 1062.0
-offset_bottom = 658.0
-theme_override_constants/h_separation = 73
-theme_override_constants/v_separation = 74
+offset_left = 323.0
+offset_top = 191.0
+offset_right = 1110.0
+offset_bottom = 515.0
+theme_override_constants/h_separation = 78
+theme_override_constants/v_separation = 81
 columns = 10
 
 [node name="Cell" parent="UI/Cells" instance=ExtResource("15_xl0cn")]
@@ -206,3 +202,5 @@ visible = false
 offset_right = 100.0
 offset_bottom = 23.0
 text = "测试文本"
+
+[node name="GeneratorEnergy" parent="." instance=ExtResource("9_s2olt")]

@@ -8,11 +8,11 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dn1f8"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3cimb"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ghscw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oymhn"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ghscw"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3cimb"]
 
 [node name="Cell" type="Control"]
 layout_mode = 3
@@ -37,9 +37,9 @@ mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3fjn8")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_taon6")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_dn1f8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_3cimb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ghscw")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_oymhn")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ghscw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3cimb")
 
 [node name="CardShadow" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.25098)

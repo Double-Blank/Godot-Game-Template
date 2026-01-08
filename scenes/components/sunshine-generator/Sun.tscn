@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://6b5vnudxrjkt"]
+
+[ext_resource type="Script" uid="uid://dlv0acpp32tnj" path="res://scenes/components/sunshine-generator/sun.gd" id="1_nd1pp"]
+[ext_resource type="Texture2D" uid="uid://cgrrudfebsh1l" path="res://assets/energy/energy_1.png" id="1_q550q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nd1pp"]
+radius = 53.9351
+
+[node name="Sun" type="Area2D"]
+script = ExtResource("1_nd1pp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_q550q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nd1pp")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
