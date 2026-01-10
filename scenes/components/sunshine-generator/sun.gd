@@ -4,6 +4,7 @@ class_name SunDrop
 
 # 信号：当阳光被收集或吸收时发出，通知UI更新
 signal sun_collected(amount)
+signal sun_absorbed_by_plant(sun_instance, plant_instance)
 
 # 属性
 var fall_speed: float = 100.0
@@ -38,6 +39,36 @@ func _process(delta):
 # 处理玩家点击（如果游戏允许玩家手动点）
 func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		fly_to_nearest_plant()
+
+# 飞向最近的植物
+func fly_to_nearest_plant():
+	if is_absorbed: return
+	
+	# 查找场景中所有的植物
+	var plants = get_tree().get_nodes_in_group("plants")
+	
+	if plants.is_empty():
+		# 如果没有植物，执行普通收集
+		collect_sun()
+		return
+	
+	# 找到最近的植物
+	var nearest_plant = null
+	var nearest_distance = INF
+	
+	for plant in plants:
+		if plant is TomatoStageManager:
+			var distance = global_position.distance_to(plant.global_position)
+			if distance < nearest_distance:
+				nearest_distance = distance
+				nearest_plant = plant
+	
+	if nearest_plant:
+		# 飞向最近的植物并被吸收
+		absorbed_by_plant(nearest_plant)
+	else:
+		# 如果没找到合适的植物，执行普通收集
 		collect_sun()
 
 # 核心功能：被植物吸收
@@ -45,6 +76,9 @@ func _on_input_event(_viewport, event, _shape_idx):
 func absorbed_by_plant(target_node: Node2D):
 	if is_absorbed: return
 	is_absorbed = true
+	
+	# 发出信号，通知主场景阳光被植物吸收了
+	sun_absorbed_by_plant.emit(self, target_node)
 	
 	# 移除碰撞，防止被其他植物再次选中
 	$CollisionShape2D.set_deferred("disabled", true)

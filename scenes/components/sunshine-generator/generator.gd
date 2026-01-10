@@ -4,6 +4,9 @@ class_name Generator
 @export var sun_scene: PackedScene # 在编辑器里把 Sun.tscn 拖进去
 @export var spawn_area_rect: Rect2 # 定义阳光生成的X轴范围
 
+@export_range(0.0, 100.0) var min_time: float = 2.1
+@export_range(0.0, 100.0) var max_time: float = 8.2
+
 # 阳光生成
 signal sun_spawned
 
@@ -16,7 +19,7 @@ func _ready():
 func _on_spawn_timer_timeout():
 	spawn_sun()
 	# 随机化下一次生成时间，让游戏不那么死板
-	spawn_timer.wait_time = randf_range(2.1, 8.2)
+	spawn_timer.wait_time = randf_range(min_time, max_time)
 
 func spawn_sun():
 	if sun_scene == null:

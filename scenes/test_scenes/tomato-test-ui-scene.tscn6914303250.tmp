@@ -1,7 +1,90 @@
 [gd_scene load_steps=4 format=3 uid="uid://8be4f4kyhukx"]
 
 [ext_resource type="PackedScene" uid="uid://bvxk8y7qg8xqr" path="res://scenes/components/plant-tomato-stage/tomato_plant.tscn" id="1_tomato"]
-[ext_resource type="Script" uid="uid://ybhtvnglkh42" path="res://scenes/test_scenes/tomato-test-ui-scene.gd" id="2_script"]
+
+[sub_resource type="GDScript" id="GDScript_1"]
+script/source = "extends Control
+
+@onready var tomato_plant = $TomatoPlant
+@onready var stage_label = $UI/VBoxContainer/StageLabel
+@onready var progress_label = $UI/VBoxContainer/ProgressLabel
+@onready var 收获按钮: Button = $UI/VBoxContainer/HBoxContainer2/收获
+
+
+func _ready():
+	
+	# 连接信号
+	tomato_plant.stage_changed.connect(_on_stage_changed)
+	tomato_plant.growth_completed.connect(_on_growth_completed)
+	
+	# 更新初始显示
+	update_ui()
+
+func _on_stage_changed(new_stage):
+	update_ui()
+	#print(\"番茄生长阶段变化: \", tomato_plant.get_stage_name())
+
+func _on_growth_completed():
+	pass
+	#print(\"番茄生长完成！\")
+
+func update_ui():
+	stage_label.text = \"当前阶段: \" + tomato_plant.get_stage_name()
+	progress_label.text = \"生长进度: %.1f%%\" % tomato_plant.get_progress_percentage()
+
+func _on_next_stage_button_pressed():
+	tomato_plant.grow_to_next_stage()
+
+func _on_reset_button_pressed():
+	tomato_plant.reset_to_stage_1()
+
+func _on_auto_grow_button_pressed():
+	tomato_plant.auto_grow = !tomato_plant.auto_grow
+	if tomato_plant.auto_grow:
+		tomato_plant.setup_auto_growth()
+	elif tomato_plant.growth_timer:
+		tomato_plant.growth_timer.stop()
+	
+	$UI/VBoxContainer/HBoxContainer/AutoGrowButton.text = \"自动生长: \" + (\"开启\" if tomato_plant.auto_grow else \"关闭\")
+
+func _on_stage_1_pressed():
+	tomato_plant.grow_to_stage(TomatoStageManager.GrowthStage.STAGE_1)
+
+func _on_stage_2_pressed():
+	tomato_plant.grow_to_stage(TomatoStageManager.GrowthStage.STAGE_2)
+
+func _on_stage_3_pressed():
+	tomato_plant.grow_to_stage(TomatoStageManager.GrowthStage.STAGE_3)
+
+func _on_stage_4_pressed():
+	tomato_plant.grow_to_stage(TomatoStageManager.GrowthStage.STAGE_4)
+
+func _on_stage_5_pressed():
+	tomato_plant.grow_to_stage(TomatoStageManager.GrowthStage.STAGE_5)
+
+func _on_stage_6_pressed():
+	tomato_plant.grow_to_stage(TomatoStageManager.GrowthStage.STAGE_6)
+
+
+func _on_tomato_plant_growth_completed() -> void:
+	收获按钮.visible = true
+	pass # Replace with function body.
+
+
+func _on_button_collect_pressed() -> void:
+	_on_tomato_plant_drop()
+	_on_tomato_plant_collect()
+
+
+func _on_tomato_plant_collect() -> void:
+	print(\"_on_tomato_plant_collect\")
+	pass # Replace with function body.
+
+
+func _on_tomato_plant_drop() -> void:
+	print(\"_on_tomato_plant_collect\")
+	pass # Replace with function body.
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_1"]
 font_size = 18
@@ -13,7 +96,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_script")
+script = SubResource("GDScript_1")
 
 [node name="TomatoPlant" parent="." instance=ExtResource("1_tomato")]
 position = Vector2(637, 425)
@@ -103,6 +186,8 @@ visible = false
 layout_mode = 2
 text = "收获"
 
+[connection signal="collect" from="TomatoPlant" to="." method="_on_tomato_plant_collect"]
+[connection signal="drop" from="TomatoPlant" to="." method="_on_tomato_plant_drop"]
 [connection signal="growth_completed" from="TomatoPlant" to="." method="_on_tomato_plant_growth_completed"]
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/NextStageButton" to="." method="_on_next_stage_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]

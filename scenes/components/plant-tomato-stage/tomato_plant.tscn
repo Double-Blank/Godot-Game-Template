@@ -1,45 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvxk8y7qg8xqr"]
+[gd_scene load_steps=4 format=3 uid="uid://bvxk8y7qg8xqr"]
 
 [ext_resource type="Script" uid="uid://b3uau0t4cyj4k" path="res://scenes/components/plant-tomato-stage/tomato_stage_manager.gd" id="1_2h3vk"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://dx66dr3ud05vo" path="res://resources/spine-resource/tomato-stage.tres" id="2_cnqju"]
-
-[sub_resource type="Animation" id="Animation_bnjri"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_ww7x4"]
-resource_name = "birth_sun"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.64, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(2.2, 2.2, 1, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rev6c"]
-_data = {
-&"RESET": SubResource("Animation_bnjri"),
-&"absorb_sunlight": SubResource("Animation_ww7x4")
-}
+[ext_resource type="Texture2D" uid="uid://diokrrgeysvug" path="res://assets/card/tomato_1.png" id="3_ww7x4"]
 
 [node name="TomatoPlant" type="Node2D"]
 script = ExtResource("1_2h3vk")
@@ -48,11 +11,12 @@ script = ExtResource("1_2h3vk")
 scale = Vector2(0.1, 0.1)
 skeleton_data_res = ExtResource("2_cnqju")
 preview_skin = "Default"
-preview_animation = "stage1"
+preview_animation = "stage6"
 preview_frame = false
 preview_time = 0.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_rev6c")
-}
+[node name="drop" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-12, -25)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_ww7x4")

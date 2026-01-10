@@ -35,6 +35,9 @@ var stage_animations = {
 }
 
 func _ready():
+	# 将植物加入"plants"组，让阳光能够找到它
+	add_to_group("plants")
+	
 	# 查找SpineSprite节点
 	spine_sprite = find_child("SpineSprite", true, false)
 	if not spine_sprite:
@@ -137,7 +140,7 @@ func is_fully_grown() -> bool:
 
 func can_harvest() -> bool:
 	"""检查是否可以收获"""
-	return current_stage >= GrowthStage.STAGE_5
+	return current_stage == GrowthStage.STAGE_6
 
 # 调试用的手动控制函数
 func _input(event):

@@ -6,6 +6,8 @@
 [node name="Generator" type="Node2D"]
 script = ExtResource("1_pufqx")
 sun_scene = ExtResource("2_rqdx2")
+min_time = 1.1
+max_time = 3.2
 
 [node name="Sun" parent="." instance=ExtResource("2_rqdx2")]
 visible = false
