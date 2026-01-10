@@ -103,7 +103,6 @@ visible = false
 layout_mode = 2
 text = "收获"
 
-[connection signal="growth_completed" from="TomatoPlant" to="." method="_on_tomato_plant_growth_completed"]
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/NextStageButton" to="." method="_on_next_stage_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/AutoGrowButton" to="." method="_on_auto_grow_button_pressed"]
@@ -113,4 +112,4 @@ text = "收获"
 [connection signal="pressed" from="UI/VBoxContainer/StageButtons/Stage4Button" to="." method="_on_stage_4_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/StageButtons/Stage5Button" to="." method="_on_stage_5_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/StageButtons/Stage6Button" to="." method="_on_stage_6_pressed"]
-[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer2/收获" to="." method="_on_button_collect_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer2/收获" to="." method="_on_收获_pressed"]

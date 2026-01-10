@@ -9,7 +9,7 @@ extends Control
 func _ready():
 	# 连接信号
 	tomato_plant.stage_changed.connect(_on_stage_changed)
-	tomato_plant.growth_completed.connect(_on_growth_completed)
+	tomato_plant.growth_completed.connect(_on_tomato_plant_growth_completed)
 	
 	# 更新初始显示
 	update_ui()
@@ -17,10 +17,6 @@ func _ready():
 func _on_stage_changed(new_stage):
 	update_ui()
 	#print("番茄生长阶段变化: ", tomato_plant.get_stage_name())
-
-func _on_growth_completed():
-	pass
-	#print("番茄生长完成！")
 
 func update_ui():
 	stage_label.text = "当前阶段: " + tomato_plant.get_stage_name()
@@ -111,3 +107,10 @@ func _on_tomato_plant_growth_completed() -> void:
 	#print("番茄掉落信号触发")
 	## 可以在这里添加掉落后的逻辑
 	#update_ui()
+
+
+func _on_收获_pressed() -> void:
+	tomato_plant.drop()
+	await get_tree().create_timer(1.0).timeout
+	tomato_plant.collect()
+	pass # Replace with function body.

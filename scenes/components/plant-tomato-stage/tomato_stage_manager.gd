@@ -23,6 +23,14 @@ signal growth_completed()
 # 内部变量
 var spine_sprite: SpineSprite
 var growth_timer: Timer
+var frute_init: Array[Vector2] = [
+	Vector2(-20.35, -25.3),
+	Vector2(-14.35, -25.3),
+	Vector2(-4.35, -25.3),
+	Vector2(9.65, -25.3),
+	Vector2(21.65, -25.3),
+	Vector2(27.65, -25.3)
+]
 
 # 动画名称映射
 var stage_animations = {
@@ -165,3 +173,46 @@ func _input(event):
 				grow_to_next_stage()
 			KEY_R:
 				reset_to_stage_1()
+
+func drop():
+	set_current_stage(GrowthStage.STAGE_5)
+	var drop_sprite2d_array: Array[Sprite2D] = []
+	var children = get_node("frute_group").get_children()
+	var index = 0
+	for child in children:
+		if child is Sprite2D:
+			child.visible = true
+			drop_sprite2d_array.append(child)
+			child.position = frute_init[index]
+		index += 1
+	# 创建 Tween
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)  # 缓出效果，模拟重力加速度
+	tween.set_trans(Tween.TRANS_QUAD)  # 二次曲线，更像自由落体
+	
+	
+	for test in drop_sprite2d_array:
+		# 记录初始位置
+		var test_start_position = test.position
+		var test_end_position = test_start_position + Vector2(0, 22)
+		# 设置动画
+		tween.tween_property(test, "position", test_end_position, 0.3)
+	
+func collect():
+	var drop_sprite2d_array: Array[Sprite2D] = []
+	var children = get_node("frute_group").get_children()
+	for child in children:
+		if child is Sprite2D:
+			drop_sprite2d_array.append(child)
+	
+	var end_position = Vector2(0, 0)
+	# 创建 Tween 动画
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN)  # 缓入效果，开始慢，结束快
+	tween.set_trans(Tween.TRANS_QUAD)
+	
+	for test in drop_sprite2d_array:
+		# 移动到左上角 (0,0)
+		tween.tween_property(test, "global_position", end_position, 0.5)
+		tween.finished.connect(func(): test.visible = false)
+	

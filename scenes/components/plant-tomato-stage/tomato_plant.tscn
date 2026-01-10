@@ -15,8 +15,40 @@ preview_animation = "stage6"
 preview_frame = false
 preview_time = 0.0
 
-[node name="drop" type="Sprite2D" parent="."]
+[node name="frute_group" type="Sprite2D" parent="."]
+
+[node name="drop" type="Sprite2D" parent="frute_group"]
 visible = false
-position = Vector2(-12, -25)
+position = Vector2(-20.35, -25.3)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_ww7x4")
+
+[node name="drop2" type="Sprite2D" parent="frute_group"]
+visible = false
+position = Vector2(-14.35, -25.3)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_ww7x4")
+
+[node name="drop3" type="Sprite2D" parent="frute_group"]
+visible = false
+position = Vector2(-4.35, -25.3)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_ww7x4")
+
+[node name="drop4" type="Sprite2D" parent="frute_group"]
+visible = false
+position = Vector2(9.65, -25.3)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_ww7x4")
+
+[node name="drop5" type="Sprite2D" parent="frute_group"]
+visible = false
+position = Vector2(21.65, -25.3)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_ww7x4")
+
+[node name="drop6" type="Sprite2D" parent="frute_group"]
+visible = false
+position = Vector2(27.65, -25.3)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_ww7x4")
