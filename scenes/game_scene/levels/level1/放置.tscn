@@ -1,0 +1,206 @@
+[gd_scene load_steps=10 format=3 uid="uid://cusf8i0u7r17f"]
+
+[ext_resource type="Script" uid="uid://cb5xn4cny3p7g" path="res://scenes/game_scene/levels/level1/sun_manager.gd" id="1_jbdtk"]
+[ext_resource type="Script" uid="uid://b0bs0m3atygx" path="res://scenes/game_scene/levels/level1/hand_manager.gd" id="2_ft2cs"]
+[ext_resource type="Texture2D" uid="uid://dcffyu6yfc45v" path="res://assets/background/bg1.png" id="3_rrfjp"]
+[ext_resource type="Script" uid="uid://ctj7q10pc42ta" path="res://scenes/test_scenes/ui.gd" id="4_m8mgc"]
+[ext_resource type="Texture2D" uid="uid://cdouwu1loliem" path="res://assets/background/ChooserBackground.png" id="5_q22br"]
+[ext_resource type="PackedScene" uid="uid://ucpqtf3ctck4" path="res://scenes/Cards/tomato.tscn" id="6_384io"]
+[ext_resource type="PackedScene" uid="uid://cbv6kaki1oyg1" path="res://scenes/Cards/res/peashooter.tscn" id="7_vskuu"]
+[ext_resource type="PackedScene" uid="uid://bm727t6dkb31y" path="res://scenes/game_scene/levels/level1/cell.tscn" id="8_kqx2o"]
+[ext_resource type="PackedScene" uid="uid://c8p1i5dcx8gau" path="res://scenes/components/sunshine-generator/generator.tscn" id="9_drhbe"]
+
+[node name="放置" type="Node2D"]
+
+[node name="Manager" type="Node" parent="."]
+
+[node name="SunManager" type="Node" parent="Manager" node_paths=PackedStringArray("start_label")]
+script = ExtResource("1_jbdtk")
+start_label = NodePath("../../UI/ChooseCardBg/Sun_Label")
+
+[node name="HandManager" type="Node2D" parent="Manager" node_paths=PackedStringArray("Plants", "cells")]
+script = ExtResource("2_ft2cs")
+Plants = NodePath("../../Plants")
+cells = NodePath("../../UI/Cells")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 2811.0
+offset_bottom = 1434.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 0
+texture = ExtResource("3_rrfjp")
+
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("card_list") groups=["UI"]]
+script = ExtResource("4_m8mgc")
+card_list = [NodePath("ChooseCardBg/HBoxContainer/Tomato"), NodePath("ChooseCardBg/HBoxContainer/Peashooter")]
+
+[node name="ChooseCardBg" type="TextureRect" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_q22br")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/ChooseCardBg"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 9.0
+offset_right = 514.0
+offset_bottom = 77.0
+theme_override_constants/separation = 55
+
+[node name="Tomato" parent="UI/ChooseCardBg/HBoxContainer" instance=ExtResource("6_384io")]
+layout_mode = 2
+
+[node name="Peashooter" parent="UI/ChooseCardBg/HBoxContainer" instance=ExtResource("7_vskuu")]
+layout_mode = 2
+
+[node name="Sun_Label" type="Label" parent="UI/ChooseCardBg"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -34.0
+offset_right = 75.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "100"
+horizontal_alignment = 1
+
+[node name="Cells" type="GridContainer" parent="UI"]
+offset_left = 323.0
+offset_top = 191.0
+offset_right = 1110.0
+offset_bottom = 515.0
+theme_override_constants/h_separation = 78
+theme_override_constants/v_separation = 81
+columns = 10
+
+[node name="Cell" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell2" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell3" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell4" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell5" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell6" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell7" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell8" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell9" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell10" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell11" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell12" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell13" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell14" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell15" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell16" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell17" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell18" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell19" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell20" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell21" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell22" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell23" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell24" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell25" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell26" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell27" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell28" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell29" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell30" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell31" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell32" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell33" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell34" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell35" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell36" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell37" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell38" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell39" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Cell40" parent="UI/Cells" instance=ExtResource("8_kqx2o")]
+layout_mode = 2
+
+[node name="Plants" type="Node2D" parent="."]
+
+[node name="TestLabel" type="Label" parent="Plants"]
+visible = false
+offset_right = 100.0
+offset_bottom = 23.0
+text = "测试文本"
+
+[node name="GeneratorEnergy" parent="." instance=ExtResource("9_drhbe")]

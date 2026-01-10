@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bm727t6dkb31y"]
 
-[ext_resource type="Script" uid="uid://sqcvdu38fdj5" path="res://scenes/test_scenes/cell.gd" id="1_3fjn8"]
+[ext_resource type="Script" uid="uid://sqcvdu38fdj5" path="res://scenes/game_scene/levels/level1/cell.gd" id="1_3fjn8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3fjn8"]
 

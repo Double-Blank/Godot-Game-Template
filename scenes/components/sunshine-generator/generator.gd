@@ -1,7 +1,11 @@
 extends Node2D
+class_name Generator
 @onready var spawn_timer: Timer = $SpawnTimer
 @export var sun_scene: PackedScene # 在编辑器里把 Sun.tscn 拖进去
 @export var spawn_area_rect: Rect2 # 定义阳光生成的X轴范围
+
+# 阳光生成
+signal sun_spawned
 
 func _ready():
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)

@@ -1,5 +1,7 @@
 extends Node2D
 @onready var spawn_timer: Timer = $SpawnTimer
+
+@export var size: float = 1
 @export var sun_scene: PackedScene # 在编辑器里把 Sun.tscn 拖进去
 @export var spawn_area_rect: Rect2 # 定义阳光生成的X轴范围
 
@@ -25,6 +27,8 @@ func spawn_sun():
 	var start_y = spawn_area_rect.position.y
 	
 	sun_instance.position = Vector2(random_x, start_y)
+	sun_instance.scale = Vector2(size, size)
+
 	
 	# 将阳光添加到场景中（通常添加到当前场景的根节点，或者专门的 'Projectiles' 层）
 	get_parent().add_child(sun_instance)
