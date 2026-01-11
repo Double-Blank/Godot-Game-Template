@@ -14,11 +14,15 @@ enum GrowthStage {
 # 信号
 signal stage_changed(new_stage: GrowthStage)
 signal growth_completed()
+signal plant_died()  # 新增：植物死亡信号
 
 # 导出变量
 @export var auto_grow: bool = false
 @export var growth_interval: float = 2.0  # 自动生长间隔（秒）
 @export var current_stage: GrowthStage = GrowthStage.STAGE_1 : set = set_current_stage
+@export var max_health: float = 100
+@export var current_health: float = 100 : set = set_current_health  # 添加setter
+@export var death_animation_duration: float = 1.0  # 死亡动画持续时间
 
 # 内部变量
 var spine_sprite: SpineSprite
@@ -31,6 +35,8 @@ var frute_init: Array[Vector2] = [
 	Vector2(21.65, -25.3),
 	Vector2(27.65, -25.3)
 ]
+
+var is_dead: bool = false  # 标记植物是否已死亡
 
 # 动画名称映射
 var stage_animations = {
@@ -63,8 +69,22 @@ func _ready():
 	if auto_grow:
 		setup_auto_growth()
 
+func set_current_health(new_health: float):
+	"""设置当前生命值"""
+	if is_dead:
+		return
+		
+	current_health = clamp(new_health, 0, max_health)
+	
+	# 检查生命值是否归零
+	if current_health <= 0:
+		die()
+
 func setup_auto_growth():
 	"""设置自动生长定时器"""
+	if is_dead:
+		return
+		
 	growth_timer = Timer.new()
 	growth_timer.wait_time = growth_interval
 	growth_timer.timeout.connect(_on_growth_timer_timeout)
@@ -73,10 +93,14 @@ func setup_auto_growth():
 
 func _on_growth_timer_timeout():
 	"""自动生长定时器回调"""
-	grow_to_next_stage()
+	if not is_dead:
+		grow_to_next_stage()
 
 func set_current_stage(new_stage: GrowthStage):
 	"""设置当前生长阶段"""
+	if is_dead:
+		return
+		
 	if new_stage != current_stage:
 		current_stage = new_stage
 		update_animation()
@@ -90,7 +114,7 @@ func set_current_stage(new_stage: GrowthStage):
 
 func update_animation():
 	"""更新Spine动画"""
-	if not spine_sprite:
+	if not spine_sprite or is_dead:
 		return
 		
 	var animation_name = stage_animations.get(current_stage, "stage1")
@@ -100,23 +124,92 @@ func update_animation():
 	
 	print("番茄生长到阶段: ", current_stage, " 播放动画: ", animation_name)
 
+func die():
+	"""植物死亡处理"""
+	if is_dead:
+		return
+		
+	is_dead = true
+	
+	# 发送死亡信号
+	plant_died.emit()
+	
+	# 停止所有计时器
+	if growth_timer:
+		growth_timer.stop()
+	
+	# 播放死亡动画
+	play_death_animation()
+
+func play_death_animation():
+	"""播放死亡动画：旋转并淡出"""
+	# 创建Tween动画
+	var tween = create_tween()
+	tween.set_parallel(true)  # 并行执行所有动画
+	
+	# 旋转90度（向左倒）
+	tween.tween_property(self, "rotation_degrees", -90.0, death_animation_duration)
+	
+	# 淡出效果
+	var all_sprites = get_tree().get_nodes_in_group("plant_sprites")  # 可能需要给相关节点添加分组
+	if all_sprites.is_empty():
+		# 如果没找到分组，就淡出整个节点
+		tween.tween_property(self, "modulate:a", 0.0, death_animation_duration)
+	else:
+		# 淡出所有精灵
+		for sprite in all_sprites:
+			tween.tween_property(sprite, "modulate:a", 0.0, death_animation_duration)
+	
+	# 动画完成后销毁
+	tween.finished.connect(_on_death_animation_finished)
+
+func _on_death_animation_finished():
+	"""死亡动画完成后的处理"""
+	print("植物已死亡，正在销毁...")
+	queue_free()
+
+func take_damage(damage: float):
+	"""植物受到伤害"""
+	if is_dead:
+		return
+		
+	current_health -= damage
+	print("植物受到伤害: ", damage, " 剩余生命: ", current_health)
+	
+	# 可以在这里添加受伤动画效果
+	if not is_dead:
+		# 短暂闪烁红色表示受伤
+		var tween = create_tween()
+		tween.tween_property(self, "modulate", Color.RED, 0.1)
+		tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+
 func grow_to_next_stage():
 	"""生长到下一个阶段"""
-	if current_stage < GrowthStage.STAGE_6:
+	if current_stage < GrowthStage.STAGE_6 and not is_dead:
 		set_current_stage(current_stage + 1)
 		return true
 	return false
 
 func grow_to_stage(target_stage: GrowthStage):
 	"""直接生长到指定阶段"""
-	if target_stage >= GrowthStage.STAGE_1 and target_stage <= GrowthStage.STAGE_6:
+	if target_stage >= GrowthStage.STAGE_1 and target_stage <= GrowthStage.STAGE_6 and not is_dead:
 		set_current_stage(target_stage)
 		return true
 	return false
 
 func reset_to_stage_1():
 	"""重置到第一阶段"""
+	if is_dead:
+		return
+		
 	set_current_stage(GrowthStage.STAGE_1)
+	current_health = max_health
+	is_dead = false
+	
+	# 恢复显示
+	self.modulate = Color.WHITE
+	self.rotation_degrees = 0
+	
 	if growth_timer:
 		growth_timer.start()
 
@@ -173,8 +266,13 @@ func _input(event):
 				grow_to_next_stage()
 			KEY_R:
 				reset_to_stage_1()
+			KEY_D:  # 新增：测试死亡效果
+				take_damage(100)  # 直接造成100伤害
 
 func drop():
+	if is_dead:
+		return
+		
 	set_current_stage(GrowthStage.STAGE_5)
 	var drop_sprite2d_array: Array[Sprite2D] = []
 	var children = get_node("frute_group").get_children()
@@ -190,7 +288,6 @@ func drop():
 	tween.set_ease(Tween.EASE_OUT)  # 缓出效果，模拟重力加速度
 	tween.set_trans(Tween.TRANS_QUAD)  # 二次曲线，更像自由落体
 	
-	
 	for test in drop_sprite2d_array:
 		# 记录初始位置
 		var test_start_position = test.position
@@ -199,6 +296,9 @@ func drop():
 		tween.tween_property(test, "position", test_end_position, 0.3)
 	
 func collect():
+	if is_dead:
+		return
+		
 	var drop_sprite2d_array: Array[Sprite2D] = []
 	var children = get_node("frute_group").get_children()
 	for child in children:

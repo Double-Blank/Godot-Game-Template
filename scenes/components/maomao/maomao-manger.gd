@@ -22,10 +22,21 @@ var stage_animations = {
 @export var detection_range: float = 5000.0  # 检测范围
 @export var attack_range: float = 30.0  # 攻击范围
 
+# 生命值相关变量
+@export var max_health: float = 100.0  # 最大生命值
+@export var current_health: float = 100.0 : set = set_current_health  # 当前生命值
+@export var health_regeneration: float = 0.0  # 生命值回复速度（每秒）
+
 # 内部变量
 var spine_sprite: SpineSprite
 var target_plant: Node2D = null
 var is_moving: bool = false
+var is_dead: bool = false
+
+# 信号
+signal health_changed(new_health: float, max_health: float)
+signal died()
+signal health_depleted()
 
 func _ready():
 	# 加入"Enemy"组，能够找到它
@@ -41,11 +52,22 @@ func _ready():
 		push_error("TomatoStageManager: 未找到SpineSprite节点")
 		return
 	
+	# 初始化生命值
+	current_health = max_health
+	
 	# 设置初始动画
 	update_animation()
 
 func _process(delta):
 	"""每帧更新"""
+	# 如果死亡，不进行任何操作
+	if is_dead:
+		return
+	
+	# 生命值回复
+	if health_regeneration > 0 and current_health < max_health:
+		heal(health_regeneration * delta)
+	
 	# 如果没有目标，寻找最近的植物
 	if not target_plant or not is_instance_valid(target_plant):
 		find_nearest_plant()
@@ -147,3 +169,82 @@ func stop_moving():
 func set_target_plant(plant: Node2D):
 	"""手动设置目标植物"""
 	target_plant = plant
+
+# 生命值相关函数
+func set_current_health(new_health: float):
+	"""设置当前生命值"""
+	var old_health = current_health
+	current_health = clamp(new_health, 0.0, max_health)
+	
+	# 发出生命值变化信号
+	if old_health != current_health:
+		health_changed.emit(current_health, max_health)
+		print("毛毛虫生命值变化: ", current_health, "/", max_health)
+	
+	# 检查是否死亡
+	if current_health <= 0 and not is_dead:
+		die()
+
+func take_damage(damage: float):
+	"""受到伤害"""
+	if is_dead:
+		return
+	
+	set_current_health(current_health - damage)
+	print("毛毛虫受到伤害: ", damage, " 剩余生命值: ", current_health)
+
+func heal(heal_amount: float):
+	"""治疗"""
+	if is_dead:
+		return
+	
+	set_current_health(current_health + heal_amount)
+
+func die():
+	"""死亡"""
+	if is_dead:
+		return
+	
+	is_dead = true
+	is_moving = false
+	target_plant = null
+	
+	# 切换到死亡动画
+	set_current_stage(MaoMaoStage.STAGE_3)
+	
+	# 发出死亡信号
+	died.emit()
+	health_depleted.emit()
+	
+	print("毛毛虫死亡")
+
+func revive(new_health: float = -1):
+	"""复活"""
+	is_dead = false
+	
+	if new_health > 0:
+		set_current_health(new_health)
+	else:
+		set_current_health(max_health)
+	
+	# 切换回行走状态
+	set_current_stage(MaoMaoStage.STAGE_1)
+	
+	print("毛毛虫复活，生命值: ", current_health)
+
+func get_health_percentage() -> float:
+	"""获取生命值百分比"""
+	if max_health <= 0:
+		return 0.0
+	return (current_health / max_health) * 100.0
+
+func is_alive() -> bool:
+	"""检查是否存活"""
+	return not is_dead and current_health > 0
+
+func set_max_health(new_max_health: float):
+	"""设置最大生命值"""
+	max_health = max(new_max_health, 1.0)
+	# 如果当前生命值超过新的最大值，调整当前生命值
+	if current_health > max_health:
+		set_current_health(max_health)

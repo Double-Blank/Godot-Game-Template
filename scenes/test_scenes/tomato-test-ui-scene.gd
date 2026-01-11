@@ -114,3 +114,8 @@ func _on_收获_pressed() -> void:
 	await get_tree().create_timer(1.0).timeout
 	tomato_plant.collect()
 	pass # Replace with function body.
+
+
+func _on_stage_7_button_2_pressed() -> void:
+	tomato_plant.take_damage(10)
+	pass # Replace with function body.
