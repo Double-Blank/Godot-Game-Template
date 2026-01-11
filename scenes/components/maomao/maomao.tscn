@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://m6lh3kio13pv"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://bhjqfbu2tvm06" path="res://resources/spine-resource/maomao.tres" id="1_li7b6"]
+[ext_resource type="Script" uid="uid://qkafhidfhwm4" path="res://scenes/components/maomao/maomao-manger.gd" id="1_ub48q"]
+
+[node name="Maomao" type="Node2D"]
+script = ExtResource("1_ub48q")
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("1_li7b6")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

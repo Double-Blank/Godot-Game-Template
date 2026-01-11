@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://bhjqfbu2tvm06"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://b65ta2gq5mbm6" path="res://assets/spine/maomaochong/毛毛虫.atlas" id="1_wb3ba"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://bptkkga5uhkq5" path="res://assets/spine/maomaochong/虫子.skel" id="2_i13m6"]
+
+[resource]
+atlas_res = ExtResource("1_wb3ba")
+skeleton_file_res = ExtResource("2_i13m6")
