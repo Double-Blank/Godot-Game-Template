@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://4phk0b0keevx"]
+
+[ext_resource type="Script" uid="uid://d0lyhyu26kfuh" path="res://scenes/components/bowandarrow/bowandarrow.gd" id="1_cy616"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://c2po8ks8x421s" path="res://resources/spine-resource/bowaim.tres" id="1_wnkue"]
+[ext_resource type="Script" uid="uid://dkn5ouonp6aer" path="res://scenes/components/bowandarrow/spine_sprite.gd" id="2_eeuwx"]
+
+[node name="Bowandarrow" type="Node2D"]
+script = ExtResource("1_cy616")
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("1_wnkue")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource("2_eeuwx")
+
+[node name="CrosshairBone" type="SpineBoneNode" parent="SpineSprite"]
+show_behind_parent = true
+bone_name = "target3"
+bone_mode = 1

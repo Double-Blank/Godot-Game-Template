@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://d17s8jc7yitgm"]
+
+[ext_resource type="Script" uid="uid://d4kv23aqud6yv" path="res://scenes/game_scene/begin/enemy_maomaochong_0.gd" id="1_n67g8"]
+[ext_resource type="Texture2D" uid="uid://cufc8gxb2v24e" path="res://assets/enemy/enemy-maomaochong-1.png" id="2_auoc7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m2b6q"]
+radius = 22.0
+height = 152.0
+
+[node name="Enemy-maomaochong-0" type="CharacterBody2D" groups=["enemy"]]
+collision_mask = 2
+script = ExtResource("1_n67g8")
+speed = 100.0
+
+[node name="Enemy-maomaochong-1" type="Sprite2D" parent="."]
+position = Vector2(2, -1)
+texture = ExtResource("2_auoc7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_m2b6q")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -18.0
+offset_top = 16.0
+offset_right = 84.0
+offset_bottom = 43.0
+scale = Vector2(0.388531, 0.245357)

@@ -1,0 +1,14 @@
+bow.png
+size:208,100
+filter:Linear,Linear
+pma:true
+弓
+bounds:2,35,63,204
+offsets:0,0,65,204
+rotate:90
+弓弦
+bounds:2,2,5,171
+rotate:90
+箭1
+bounds:2,9,24,194
+rotate:90

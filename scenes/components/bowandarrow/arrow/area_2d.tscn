@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://vhbgdtl0rfti"]
+
+[ext_resource type="Texture2D" uid="uid://t82jv6bhk13q" path="res://assets/bullet/bowandarrow.png" id="1_kkfpx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eeuwx"]
+size = Vector2(196, 20)
+
+[node name="Area2D" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(127, 0)
+shape = SubResource("RectangleShape2D_eeuwx")
+
+[node name="Bowandarrow" type="Sprite2D" parent="CollisionShape2D"]
+show_behind_parent = true
+position = Vector2(-7.5, -10)
+rotation = 1.5708
+scale = Vector2(0.824074, 1.02361)
+texture = ExtResource("1_kkfpx")

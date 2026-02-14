@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://bptkkga5uhkq5"
+path="res://.godot/imported/虫子.skel-1f87c7bfad6f3309aa8065e22b20646f.spskel"
+
+[deps]
+
+source_file="res://assets/spine/maomaochong/虫子.skel"
+dest_files=["res://.godot/imported/虫子.skel-1f87c7bfad6f3309aa8065e22b20646f.spskel"]
+
+[params]
+

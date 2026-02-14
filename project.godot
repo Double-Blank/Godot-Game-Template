@@ -12,7 +12,7 @@ config_version=5
 
 config/name="plan-grow-spine"
 run/main_scene="res://scenes/opening/opening.tscn"
-config/features=PackedStringArray("4.4")
+config/features=PackedStringArray("4.5")
 config/icon="res://icon.png"
 
 [autoload]
@@ -26,6 +26,7 @@ ProjectUISoundController="*res://addons/maaacks_game_template/base/nodes/autoloa
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 

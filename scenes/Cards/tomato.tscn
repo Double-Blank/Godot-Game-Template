@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://ucpqtf3ctck4"]
+
+[ext_resource type="PackedScene" uid="uid://pp140i5yv0mm" path="res://scenes/Cards/card.tscn" id="1_rh345"]
+[ext_resource type="Resource" uid="uid://c8umv607ka1v5" path="res://scenes/Cards/res/Tomato.tres" id="2_bg845"]
+
+[node name="Tomato" instance=ExtResource("1_rh345")]
+card_res = ExtResource("2_bg845")

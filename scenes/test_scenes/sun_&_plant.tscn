@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://b47q50bfkwpuj"]
+
+[ext_resource type="Script" uid="uid://cpujcv8xe1sl4" path="res://scenes/test_scenes/sun_&_plant.gd" id="1_7lctg"]
+[ext_resource type="PackedScene" uid="uid://bvxk8y7qg8xqr" path="res://scenes/components/plant-tomato-stage/tomato_plant.tscn" id="2_rb87x"]
+[ext_resource type="PackedScene" uid="uid://c8p1i5dcx8gau" path="res://scenes/components/sunshine-generator/generator.tscn" id="3_gwc5i"]
+
+[node name="Sun&Plant" type="Node2D"]
+script = ExtResource("1_7lctg")
+
+[node name="TomatoPlant" parent="." instance=ExtResource("2_rb87x")]
+position = Vector2(137, 99)
+
+[node name="Generator" parent="." instance=ExtResource("3_gwc5i")]

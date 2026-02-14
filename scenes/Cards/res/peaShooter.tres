@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardRes" load_steps=6 format=3 uid="uid://cw18c7jmpe2of"]
+
+[ext_resource type="Script" uid="uid://5jt6kagixrys" path="res://scenes/Cards/res/card_res.gd" id="1_wwcwa"]
+[ext_resource type="Texture2D" uid="uid://bebbaqt5ct7sb" path="res://assets/card/card_bow2.png" id="1_xpl3j"]
+[ext_resource type="Texture2D" uid="uid://csicgwdqrbyc3" path="res://assets/card/card_bow.png" id="2_vugqm"]
+[ext_resource type="Texture2D" uid="uid://ci3mcwbfp4d4y" path="res://assets/card/bow_1.png" id="3_f72nv"]
+[ext_resource type="PackedScene" uid="uid://ca31smj1enqj2" path="res://plants/pea_shooter.tscn" id="3_pnwis"]
+
+[resource]
+script = ExtResource("1_wwcwa")
+card_name = "shooter"
+sun_num = 200
+cool_time = 3.0
+card_light = ExtResource("2_vugqm")
+card_dark = ExtResource("1_xpl3j")
+max_health = 100
+card_shadow = ExtResource("3_f72nv")
+card_type = 0
+plant_scene = ExtResource("3_pnwis")
+metadata/_custom_type_script = "uid://5jt6kagixrys"

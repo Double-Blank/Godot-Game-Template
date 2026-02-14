@@ -1,0 +1,120 @@
+[gd_scene load_steps=4 format=3 uid="uid://8be4f4kyhukx"]
+
+[ext_resource type="PackedScene" uid="uid://bvxk8y7qg8xqr" path="res://scenes/components/plant-tomato-stage/tomato_plant.tscn" id="1_tomato"]
+[ext_resource type="Script" uid="uid://ybhtvnglkh42" path="res://scenes/test_scenes/tomato-test-ui-scene.gd" id="2_script"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1"]
+font_size = 18
+
+[node name="TomatoTestScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_script")
+
+[node name="TomatoPlant" parent="." instance=ExtResource("1_tomato")]
+position = Vector2(637, 425)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 400.0
+
+[node name="StageLabel" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "当前阶段: 种子期"
+label_settings = SubResource("LabelSettings_1")
+
+[node name="ProgressLabel" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "生长进度: 16.7%"
+
+[node name="HSeparator" type="HSeparator" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="NextStageButton" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "下一阶段"
+
+[node name="ResetButton" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "重置"
+
+[node name="AutoGrowButton" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "自动生长: 关闭"
+
+[node name="HSeparator2" type="HSeparator" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "直接跳转到阶段:"
+
+[node name="StageButtons" type="GridContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Stage1Button" type="Button" parent="UI/VBoxContainer/StageButtons"]
+layout_mode = 2
+text = "阶段1"
+
+[node name="Stage2Button" type="Button" parent="UI/VBoxContainer/StageButtons"]
+layout_mode = 2
+text = "阶段2"
+
+[node name="Stage3Button" type="Button" parent="UI/VBoxContainer/StageButtons"]
+layout_mode = 2
+text = "阶段3"
+
+[node name="Stage4Button" type="Button" parent="UI/VBoxContainer/StageButtons"]
+layout_mode = 2
+text = "阶段4"
+
+[node name="Stage5Button" type="Button" parent="UI/VBoxContainer/StageButtons"]
+layout_mode = 2
+text = "阶段5"
+
+[node name="Stage6Button" type="Button" parent="UI/VBoxContainer/StageButtons"]
+layout_mode = 2
+text = "阶段6"
+
+[node name="Stage7Button2" type="Button" parent="UI/VBoxContainer/StageButtons"]
+layout_mode = 2
+text = "伤害"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="收获" type="Button" parent="UI/VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+text = "收获"
+
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/NextStageButton" to="." method="_on_next_stage_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/AutoGrowButton" to="." method="_on_auto_grow_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/StageButtons/Stage1Button" to="." method="_on_stage_1_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/StageButtons/Stage2Button" to="." method="_on_stage_2_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/StageButtons/Stage3Button" to="." method="_on_stage_3_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/StageButtons/Stage4Button" to="." method="_on_stage_4_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/StageButtons/Stage5Button" to="." method="_on_stage_5_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/StageButtons/Stage6Button" to="." method="_on_stage_6_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/StageButtons/Stage7Button2" to="." method="_on_stage_7_button_2_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer2/收获" to="." method="_on_收获_pressed"]

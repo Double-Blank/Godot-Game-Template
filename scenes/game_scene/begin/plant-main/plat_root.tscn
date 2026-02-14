@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl1pbpo5utj64"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://cs7uuetomhd0" path="res://scenes/game_scene/begin/plant-main/new_spine_skeleton_data_resource.tres" id="1_dodxx"]
+[ext_resource type="Script" uid="uid://cr03a8fuo1ca" path="res://scenes/game_scene/begin/tower.gd" id="2_r73kd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dodxx"]
+height = 200.0
+
+[node name="Tower" type="StaticBody2D"]
+collision_mask = 2
+script = ExtResource("2_r73kd")
+
+[node name="Plat-root" type="SpineSprite" parent="."]
+scale = Vector2(0.2, 0.2)
+skeleton_data_res = ExtResource("1_dodxx")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -28.0
+offset_top = 65.0
+offset_right = 57.0
+offset_bottom = 92.0
+scale = Vector2(0.727329, 0.501867)
+max_value = 500.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 102)
+shape = SubResource("CapsuleShape2D_dodxx")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

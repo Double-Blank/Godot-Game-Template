@@ -40,7 +40,7 @@ func _add_textures_to_container(textures : Array[Texture2D]) -> void:
 	for texture in textures:
 		var texture_rect : TextureRect = TextureRect.new()
 		texture_rect.texture = texture
-		texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
 		texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		texture_rect.modulate.a = 0.0
 		%ImagesContainer.call_deferred("add_child", texture_rect)
@@ -111,5 +111,8 @@ func _show_next_image(animated : bool = true) -> void:
 
 func _ready() -> void:
 	SceneLoader.load_scene(get_next_scene_path(), true)
+	# 不添加任何图片到容器，跳过过场动画
 	_add_textures_to_container(images)
 	_transition_in()
+	# 直接跳转到下一个场景
+	#_load_next_scene()
