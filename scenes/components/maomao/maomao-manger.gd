@@ -20,7 +20,6 @@ var stage_animations = {
 # 移动相关变量
 @export var move_speed: float = 50.0  # 移动速度
 @export var detection_range: float = 5000.0  # 检测范围
-@export var attack_range: float = 30.0  # 攻击范围
 
 # 生命值相关变量
 @export var max_health: float = 100.0  # 最大生命值
@@ -32,6 +31,7 @@ var spine_sprite: SpineSprite
 var target_plant: Node2D = null
 var is_moving: bool = false
 var is_dead: bool = false
+var is_in_attack_area: bool = false
 
 # 信号
 signal health_changed(new_health: float, max_health: float)
@@ -51,6 +51,12 @@ func _ready():
 	if not spine_sprite:
 		push_error("TomatoStageManager: 未找到SpineSprite节点")
 		return
+	
+	# 连接Area2D信号
+	var area = $Area2D
+	if area:
+		area.area_entered.connect(_on_area_2d_area_entered)
+		area.area_exited.connect(_on_area_2d_area_exited)
 	
 	# 初始化生命值
 	current_health = max_health
@@ -102,10 +108,8 @@ func move_towards_target(delta):
 	if not target_plant or not is_instance_valid(target_plant):
 		return
 	
-	var distance_to_target = global_position.distance_to(target_plant.global_position)
-	
 	# 如果到达攻击范围，停止移动并切换到攻击状态
-	if distance_to_target <= attack_range:
+	if is_in_attack_area:
 		is_moving = false
 		if current_stage != MaoMaoStage.STAGE_2:
 			set_current_stage(MaoMaoStage.STAGE_2)
@@ -158,8 +162,7 @@ func get_distance_to_target() -> float:
 
 func is_at_attack_range() -> bool:
 	"""检查是否在攻击范围内"""
-	var distance = get_distance_to_target()
-	return distance != -1.0 and distance <= attack_range
+	return is_in_attack_area
 
 func stop_moving():
 	"""停止移动"""
@@ -248,3 +251,11 @@ func set_max_health(new_max_health: float):
 	# 如果当前生命值超过新的最大值，调整当前生命值
 	if current_health > max_health:
 		set_current_health(max_health)
+
+func _on_area_2d_area_entered(area: Area2D):
+	if target_plant and area.get_parent() == target_plant:
+		is_in_attack_area = true
+
+func _on_area_2d_area_exited(area: Area2D):
+	if target_plant and area.get_parent() == target_plant:
+		is_in_attack_area = false
