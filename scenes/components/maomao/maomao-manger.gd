@@ -52,6 +52,9 @@ func _ready():
 		push_error("TomatoStageManager: 未找到SpineSprite节点")
 		return
 	
+	# 连接动画完成信号
+	spine_sprite.animation_completed.connect(_on_spine_animation_completed)
+	
 	# 连接Area2D信号
 	var area = $Area2D
 	if area:
@@ -212,6 +215,15 @@ func die():
 	is_moving = false
 	target_plant = null
 	
+	# 死亡后取消"Enemy"组
+	if is_in_group("enemy"):
+		remove_from_group("enemy")
+	
+	# 取消碰撞体积
+	var collision_shape = find_child("CollisionShape2D", true, false)
+	if collision_shape:
+		collision_shape.set_deferred("disabled", true)
+	
 	# 切换到死亡动画
 	set_current_stage(MaoMaoStage.STAGE_3)
 	
@@ -221,19 +233,12 @@ func die():
 	
 	print("毛毛虫死亡")
 
-func revive(new_health: float = -1):
-	"""复活"""
-	is_dead = false
-	
-	if new_health > 0:
-		set_current_health(new_health)
-	else:
-		set_current_health(max_health)
-	
-	# 切换回行走状态
-	set_current_stage(MaoMaoStage.STAGE_1)
-	
-	print("毛毛虫复活，生命值: ", current_health)
+func _on_spine_animation_completed(sprite: SpineSprite, animation_state: SpineAnimationState, track_entry: SpineTrackEntry):
+	# 如果是死亡动画播放完成，则释放内存
+	var animation_name = track_entry.get_animation().get_name()
+	if animation_name == "death":
+		print("毛毛虫死亡动画播放完成，释放内存")
+		queue_free()
 
 func get_health_percentage() -> float:
 	"""获取生命值百分比"""

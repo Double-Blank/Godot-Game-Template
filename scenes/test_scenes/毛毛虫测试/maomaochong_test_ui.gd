@@ -29,9 +29,16 @@ func _ready():
 	timer.timeout.connect(_on_timer_timeout)
 	
 func _on_timer_timeout():
-	var position = Vector2(maomao.position)
-	bowandarrow.shoot_arrow(Vector2(position.x - 50 + 50, position.y))
-	pass
+	# 容错处理：如果 maomao 已经被销毁或不存在，直接返回，不执行后续攻击逻辑
+	if not is_instance_valid(maomao):
+		return
+	
+	# 如果你的逻辑是“毛毛虫死了就不打”，可以再加上死亡状态判断
+	if maomao.is_dead:
+		return
+
+	var position = maomao.position # Vector2 本身就是 maomao.position 的类型，无需重复转换
+	bowandarrow.shoot_arrow(Vector2(position.x, position.y))
 
 func _process(_delta):
 	update_ui()

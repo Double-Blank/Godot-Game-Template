@@ -10,6 +10,8 @@ const ARROW_SCENE = preload("res://scenes/components/bowandarrow/arrow/area_2d.t
 var arrows: Array[Node2D] = []
 # 箭矢移动速度
 var arrow_speed: float = 1600.0
+# 箭矢伤害
+var arrow_damage: float = 20.0
 # 屏幕范围（用于检测箭矢是否超出屏幕）
 var screen_rect: Rect2
 
@@ -98,6 +100,10 @@ func _actually_spawn_arrow(target_position: Vector2):
 	# 设置箭矢初始位置
 	arrow_instance.global_position = spawn_pos
 	
+	# 连接碰撞信号
+	arrow_instance.area_entered.connect(_on_arrow_area_entered.bind(arrow_instance))
+	arrow_instance.body_entered.connect(_on_arrow_body_entered.bind(arrow_instance))
+	
 	# 计算从发射点到目标位置的向量
 	var direction = (target_position - spawn_pos).normalized()
 	
@@ -120,6 +126,27 @@ func shoot_arrow_to_mouse():
 	"""向鼠标位置发射箭矢（触发动画）"""
 	var mouse_pos = get_global_mouse_position()
 	play_shoot_animation(mouse_pos)
+
+# 当箭矢碰到其他区域时触发
+func _on_arrow_area_entered(area: Area2D, arrow: Node2D):
+	_on_arrow_hit(area.get_parent(), arrow)
+
+# 当箭矢碰到物理体时触发
+func _on_arrow_body_entered(body: Node2D, arrow: Node2D):
+	_on_arrow_hit(body, arrow)
+
+# 统一处理命中逻辑
+func _on_arrow_hit(target: Node, arrow: Node2D):
+	if not is_instance_valid(arrow) or not arrow in arrows:
+		return
+		
+	if target.is_in_group("enemy"):
+		if target.has_method("take_damage"):
+			target.take_damage(arrow_damage)
+		
+		# 命中敌人后销毁箭矢
+		arrows.erase(arrow)
+		arrow.queue_free()
 
 func _process(delta: float) -> void:
 
