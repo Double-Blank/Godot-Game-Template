@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvxk8y7qg8xqr"]
+[gd_scene load_steps=7 format=3 uid="uid://bvxk8y7qg8xqr"]
 
 [ext_resource type="Script" uid="uid://b3uau0t4cyj4k" path="res://scenes/components/plant-tomato-stage/tomato_stage_manager.gd" id="1_2h3vk"]
-[ext_resource type="PackedScene" path="res://scenes/components/plant-tomato-stage/sun_absorber_component.tscn" id="2_absorber"]
+[ext_resource type="PackedScene" uid="uid://nmbswn0exxxe" path="res://scenes/components/plant-tomato-stage/sun_absorber_component.tscn" id="2_absorber"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://dx66dr3ud05vo" path="res://resources/spine-resource/tomato-stage.tres" id="2_cnqju"]
+[ext_resource type="PackedScene" uid="uid://wfgiok27cgn6" path="res://scenes/components/plant-tomato-stage/harvest_component.tscn" id="3_8u2ep"]
 [ext_resource type="Texture2D" uid="uid://diokrrgeysvug" path="res://assets/card/tomato_1.png" id="3_ww7x4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ww7x4"]
@@ -13,7 +14,8 @@ height = 80.0
 script = ExtResource("1_2h3vk")
 
 [node name="SunAbsorberComponent" parent="." instance=ExtResource("2_absorber")]
-absorption_range = 100.0
+
+[node name="HarvestComponent" parent="." instance=ExtResource("3_8u2ep")]
 
 [node name="Area2D" type="Area2D" parent="."]
 

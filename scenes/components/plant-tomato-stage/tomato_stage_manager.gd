@@ -247,6 +247,20 @@ func can_harvest() -> bool:
 	"""检查是否可以收获"""
 	return current_stage == GrowthStage.STAGE_6
 
+func on_harvested():
+	"""当植物被收获时调用"""
+	if is_dead:
+		return
+	
+	# 播放收集动画
+	collect()
+	
+	# 重置到生长阶段5（或者根据需求重置到其他阶段，比如1）
+	# 这里假设收获后番茄会重新生长
+	set_current_stage(GrowthStage.STAGE_5)
+	
+	print("植物已收获，重置到阶段5")
+
 # 调试用的手动控制函数
 func _input(event):
 	if not Engine.is_editor_hint():

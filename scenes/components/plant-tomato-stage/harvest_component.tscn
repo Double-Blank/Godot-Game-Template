@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://wfgiok27cgn6"]
+
+[ext_resource type="Script" uid="uid://koc6qprnf5n6" path="res://scenes/components/plant-tomato-stage/harvest_component.gd" id="1_miwml"]
+
+[node name="HarvestCom" type="Node2D"]
+script = ExtResource("1_miwml")
