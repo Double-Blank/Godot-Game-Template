@@ -67,6 +67,11 @@ func fly_to_nearest_plant():
 	if nearest_plant:
 		# 飞向最近的植物并被吸收
 		absorbed_by_plant(nearest_plant)
+		
+		# 通知植物的吸收组件增加计数
+		var absorber = nearest_plant.find_child("SunAbsorberComponent", true, false)
+		if absorber and absorber.has_method("add_sun"):
+			absorber.add_sun(1)
 	else:
 		# 如果没找到合适的植物，执行普通收集
 		collect_sun()
