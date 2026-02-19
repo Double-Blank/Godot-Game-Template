@@ -131,6 +131,10 @@ func die():
 		
 	is_dead = true
 	
+	# 从植物组中移除，防止敌人继续锁定
+	if is_in_group("plants"):
+		remove_from_group("plants")
+	
 	# 发送死亡信号
 	plant_died.emit()
 	
@@ -315,4 +319,3 @@ func collect():
 		# 移动到左上角 (0,0)
 		tween.tween_property(test, "global_position", end_position, 0.5)
 		tween.finished.connect(func(): test.visible = false)
-	

@@ -4,16 +4,27 @@ class_name BowAndArrow
 @onready var spine_sprite: SpineSprite = $SpineSprite
 @onready var crosshair_bone: SpineBoneNode = $SpineSprite/CrosshairBone
 
+
+# 箭矢伤害
+@export var arrow_damage: float = 20.0
+# 击退强度（数值越大，弹开越远）
+@export var knockback_force: float = 300.0
+
 # 箭矢场景
 const ARROW_SCENE = preload("res://scenes/components/bowandarrow/arrow/area_2d.tscn")
 # 存储所有箭矢实例的数组
 var arrows: Array[Node2D] = []
 # 箭矢移动速度
 var arrow_speed: float = 1600.0
-# 箭矢伤害
-var arrow_damage: float = 20.0
 # 屏幕范围（用于检测箭矢是否超出屏幕）
 var screen_rect: Rect2
+
+# 自动射击冷却时间
+var shoot_cooldown: float = 0.5
+# 当前冷却计时
+var shoot_timer: float = 0.0
+# 自动射击检测范围
+var detection_range: float = 2000.0
 
 # 存储当前要发射的目标位置
 var current_target_position: Vector2 = Vector2.ZERO
@@ -137,18 +148,40 @@ func _on_arrow_body_entered(body: Node2D, arrow: Node2D):
 
 # 统一处理命中逻辑
 func _on_arrow_hit(target: Node, arrow: Node2D):
-	if not is_instance_valid(arrow) or not arrow in arrows:
+	if not is_instance_valid(arrow) or arrow not in arrows:
 		return
 		
 	if target.is_in_group("enemy"):
+		# 1. 处理伤害
 		if target.has_method("take_damage"):
 			target.take_damage(arrow_damage)
+		
+		# 2. 处理击退 (新增部分)
+		# 计算从箭矢指向目标的击退方向
+		var knockback_direction = arrow.get_meta("direction", Vector2.ZERO)
+		
+		# 如果目标有 handle_knockback 方法，则调用它
+		if target.has_method("handle_knockback"):
+			target.handle_knockback(knockback_direction, knockback_force)
+		# 或者如果你的毛毛虫直接暴露了位置，也可以在这里微调（但不推荐，建议在毛毛虫内部处理）
+		elif "position" in target:
+			var tween = get_tree().create_tween()
+			tween.tween_property(target, "position", target.position + knockback_direction * 50, 0.1)
 		
 		# 命中敌人后销毁箭矢
 		arrows.erase(arrow)
 		arrow.queue_free()
 
 func _process(delta: float) -> void:
+	# 自动锁敌逻辑
+	if not waiting_for_shoot_event:
+		if shoot_timer > 0:
+			shoot_timer -= delta
+		else:
+			var target = _find_nearest_enemy()
+			if target:
+				play_shoot_animation(target.global_position)
+				shoot_timer = shoot_cooldown
 
 	# 遍历所有箭矢并移动它们
 	for i in range(arrows.size() - 1, -1, -1):
@@ -169,3 +202,23 @@ func _process(delta: float) -> void:
 			# 销毁箭矢
 			arrow.queue_free()
 			arrows.remove_at(i)
+
+# 寻找最近的敌人
+func _find_nearest_enemy() -> Node2D:
+	var enemies = get_tree().get_nodes_in_group("enemy")
+	var nearest_enemy = null
+	var min_dist = detection_range
+	
+	for enemy in enemies:
+		if not is_instance_valid(enemy):
+			continue
+		# 如果敌人有 is_dead 属性且为 true，跳过
+		if "is_dead" in enemy and enemy.is_dead:
+			continue
+			
+		var dist = global_position.distance_to(enemy.global_position)
+		if dist < min_dist:
+			min_dist = dist
+			nearest_enemy = enemy
+			
+	return nearest_enemy

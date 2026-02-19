@@ -64,6 +64,8 @@ auto_grow = true
 
 [node name="Bowandarrow" parent="." instance=ExtResource("3_1lpgw")]
 position = Vector2(122, 564)
+arrow_damage = 0.0
+knockback_force = 0.0
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

@@ -4,15 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://cle1k8ie7xayh" path="res://assets/energy/energy_1.png" id="1_q550q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nd1pp"]
-radius = 53.9351
+radius = 109.99999
 
 [node name="Sun" type="Area2D"]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_nd1pp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 1.4305115e-06)
-scale = Vector2(1.9999999, 2.1999998)
+scale = Vector2(3.5454545, 3.8999999)
 texture = ExtResource("1_q550q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

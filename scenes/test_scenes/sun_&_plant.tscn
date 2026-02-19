@@ -11,3 +11,4 @@ script = ExtResource("1_7lctg")
 position = Vector2(137, 99)
 
 [node name="Generator" parent="." instance=ExtResource("3_gwc5i")]
+position = Vector2(686, 253)

@@ -16,6 +16,7 @@
 
 [node name="SunManager" type="Node" parent="Manager" node_paths=PackedStringArray("start_label")]
 script = ExtResource("1_jbdtk")
+start_sun = 300
 start_label = NodePath("../../UI/ChooseCardBg/Sun_Label")
 
 [node name="HandManager" type="Node2D" parent="Manager" node_paths=PackedStringArray("Plants", "cells")]

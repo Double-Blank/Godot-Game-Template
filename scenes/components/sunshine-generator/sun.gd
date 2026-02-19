@@ -71,31 +71,39 @@ func fly_to_nearest_plant():
 		# 如果没找到合适的植物，执行普通收集
 		collect_sun()
 
-# 核心功能：被植物吸收
-# target_position: 植物的位置
+# 优化后的被植物吸收功能
 func absorbed_by_plant(target_node: Node2D):
 	if is_absorbed: return
 	is_absorbed = true
 	
-	# 发出信号，通知主场景阳光被植物吸收了
 	sun_absorbed_by_plant.emit(self, target_node)
-	
-	# 移除碰撞，防止被其他植物再次选中
 	$CollisionShape2D.set_deferred("disabled", true)
 	
-	# 使用 Tween 制作飞向植物的动画
 	var tween = create_tween()
-	tween.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+	# 设置平滑的曲线类型
+	tween.set_parallel(true) # 开启并行模式，方便处理复杂的同步动画
 	
-	# 1. 飞向植物位置
-	tween.tween_property(self, "global_position", target_node.global_position, 0.5)
-	# 2. 同时缩小（模拟被吃掉）
-	tween.parallel().tween_property(self, "scale", Vector2.ZERO, 0.5)
+	# 计算一个中转点（在起始点和终点上方，制造抛物线效果）
+	var start_pos = global_position
+	var end_pos = target_node.global_position
+	var mid_pos = (start_pos + end_pos) / 2 + Vector2(0, -80) # 向上偏移80像素
 	
-	# 3. 动画结束后销毁并增加资源
-	tween.tween_callback(func():
-		# 这里可以调用全局单例增加阳光数值
-		# GameManager.add_sun(sun_value) 
+	# 1. 轨迹优化：利用两个阶段模拟抛物线/弧线飞行
+	# 第一阶段：飞向中转点（耗时 0.25秒）
+	tween.tween_property(self, "global_position", mid_pos, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	# 第二阶段：从中转点飞向目标（接在后面执行，耗时 0.35秒）
+	tween.chain().tween_property(self, "global_position", end_pos, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	
+	# 2. 缩放优化：前 0.3 秒保持大小甚至稍微弹跳，后 0.3 秒才真正缩小
+	var zoom_tween = create_tween()
+	zoom_tween.tween_property(self, "scale", Vector2.ZERO, 0.45).set_delay(0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	
+	# 3. 透明度优化：增加消失感
+	tween.parallel().tween_property(self, "modulate:a", 0.0, 0.6)
+	
+	# 4. 结束回调
+	tween.chain().tween_callback(func():
+		# GameManager.add_sun(sun_value)
 		queue_free()
 	)
 

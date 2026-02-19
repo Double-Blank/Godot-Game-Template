@@ -21,6 +21,11 @@ var stage_animations = {
 @export var move_speed: float = 50.0  # 移动速度
 @export var detection_range: float = 5000.0  # 检测范围
 
+# 攻击相关变量
+@export var attack_damage: float = 10.0  # 攻击伤害
+@export var attack_interval: float = 1.0  # 攻击间隔（秒）
+var attack_timer: float = 0.0
+
 # 生命值相关变量
 @export var max_health: float = 100.0  # 最大生命值
 @export var current_health: float = 100.0 : set = set_current_health  # 当前生命值
@@ -84,10 +89,25 @@ func _process(delta):
 	# 如果有目标，移动向目标
 	if target_plant and is_instance_valid(target_plant):
 		move_towards_target(delta)
+		
+	# 攻击逻辑
+	if is_in_attack_area and target_plant and is_instance_valid(target_plant):
+		attack_timer += delta
+		if attack_timer >= attack_interval:
+			perform_attack()
+			attack_timer = 0.0
+	else:
+		attack_timer = 0.0
+
+func perform_attack():
+	"""执行攻击"""
+	if target_plant and target_plant.has_method("take_damage"):
+		target_plant.take_damage(attack_damage)
+		print("毛毛虫攻击了植物，造成伤害: ", attack_damage)
 
 func find_nearest_plant():
 	"""寻找最近的植物目标"""
-	var plants = get_tree().get_nodes_in_group("plant")
+	var plants = get_tree().get_nodes_in_group("plants")
 	if plants.is_empty():
 		return
 	var nearest_plant = null
@@ -258,9 +278,28 @@ func set_max_health(new_max_health: float):
 		set_current_health(max_health)
 
 func _on_area_2d_area_entered(area: Area2D):
-	if target_plant and area.get_parent() == target_plant:
+	var parent = area.get_parent()
+	if target_plant and parent == target_plant:
+		is_in_attack_area = true
+	elif not target_plant and parent.is_in_group("plants"):
+		# 如果当前没目标但碰到了植物，也可以考虑将其设为目标
+		target_plant = parent
 		is_in_attack_area = true
 
 func _on_area_2d_area_exited(area: Area2D):
 	if target_plant and area.get_parent() == target_plant:
 		is_in_attack_area = false
+		# 目标离开或消失时，重置攻击计时
+		attack_timer = 0.0
+
+func handle_knockback(direction: Vector2, force: float):
+	if is_dead: return
+	
+	# 简单的击退效果：使用 Tween 动画让它向后位移一段距离
+	var knockback_distance = direction * (force * 0.2) # 缩放一下力度
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "global_position", global_position + knockback_distance, 0.2)
+	
+	# 如果你有受伤动画，也可以在这里播放
+	# spine_sprite.get_animation_state().set_animation("hit", 0, false)

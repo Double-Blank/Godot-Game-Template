@@ -6,7 +6,6 @@ extends Node2D
 @onready var next_stage_button: Button = $UI/VBoxContainer/HBoxContainer/NextStageButton
 @onready var reset_button: Button = $UI/VBoxContainer/HBoxContainer/ResetButton
 @onready var bowandarrow: BowAndArrow = $Bowandarrow
-@onready var timer: Timer = $Timer
 
 
 func _ready():
@@ -25,20 +24,6 @@ func _ready():
 	
 	# 初始化UI
 	update_ui()
-	# 连接信号
-	timer.timeout.connect(_on_timer_timeout)
-	
-func _on_timer_timeout():
-	# 容错处理：如果 maomao 已经被销毁或不存在，直接返回，不执行后续攻击逻辑
-	if not is_instance_valid(maomao):
-		return
-	
-	# 如果你的逻辑是“毛毛虫死了就不打”，可以再加上死亡状态判断
-	if maomao.is_dead:
-		return
-
-	var position = maomao.position # Vector2 本身就是 maomao.position 的类型，无需重复转换
-	bowandarrow.shoot_arrow(Vector2(position.x, position.y))
 
 func _process(_delta):
 	update_ui()

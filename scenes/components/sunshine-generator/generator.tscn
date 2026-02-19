@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://6b5vnudxrjkt" path="res://scenes/components/sunshine-generator/Sun.tscn" id="2_rqdx2"]
 
 [node name="Generator" type="Node2D"]
+visible = false
 script = ExtResource("1_pufqx")
 sun_scene = ExtResource("2_rqdx2")
 min_time = 1.1
 max_time = 3.2
 
 [node name="Sun" parent="." instance=ExtResource("2_rqdx2")]
-visible = false
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 3.637
