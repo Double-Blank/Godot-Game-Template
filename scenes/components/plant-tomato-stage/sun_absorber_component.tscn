@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://nmbswn0exxxe"]
+
+[ext_resource type="Script" uid="uid://c84u5elpksrr2" path="res://scenes/components/plant-tomato-stage/sun_absorber_component.gd" id="1_absorber"]
+
+[node name="SunAbsorberComponent" type="Node2D"]
+script = ExtResource("1_absorber")

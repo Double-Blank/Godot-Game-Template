@@ -14,8 +14,9 @@ var absorption_timer: Timer
 var collected_sun_count: int = 0  # 当前收集的阳光数量
 
 func _ready():
-	setup_absorption_system()
-	connect_signals()
+	pass
+	#setup_absorption_system()
+	#connect_signals()
 
 func setup_absorption_system():
 	"""设置阳光吸收系统"""
