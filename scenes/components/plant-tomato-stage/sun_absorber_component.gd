@@ -56,10 +56,10 @@ func absorb_sun(sun: Node2D):
 func check_growth():
 	if collected_sun_count >= sun_needed_per_stage:
 		collected_sun_count = 0
-		if parent_plant.has_method("grow_to_next_stage"):
-			var success = parent_plant.grow_to_next_stage()
-			if success:
-				print("组件: 促进植物生长成功")
+		# if parent_plant.has_method("grow_to_next_stage"):
+			# var success = parent_plant.grow_to_next_stage()
+			# if success:
+			# 	print("组件: 促进植物生长成功")
 
 # 外部接口：手动增加阳光（例如点击吸收时调用）
 func add_sun(amount: int = 1):

@@ -45,10 +45,8 @@ func _update_timer() -> void:
 	timer.wait_time = randf_range(min_interval, max_interval)
 
 func _on_timer_timeout() -> void:
-	print("ininin")
 	spawn_enemy()
 	_update_timer()
-	print("下一次生成等待时间: ", timer.wait_time)
 
 func spawn_enemy() -> void:
 	if spawn_zone == null:

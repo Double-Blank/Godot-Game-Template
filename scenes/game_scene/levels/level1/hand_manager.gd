@@ -44,7 +44,6 @@ func _on_card_click(clicked_card_res: CardRes):
 	select_sprite.global_position = get_global_mouse_position()
 
 func _process(delta: float) -> void:
-	# print(delta)
 	if select_sprite:
 		select_sprite.global_position = get_global_mouse_position()
 

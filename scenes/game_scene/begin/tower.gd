@@ -18,7 +18,6 @@ func shoot_bullet():
 	new_bullet.global_position = Vector2(0, 0)
 
 func _on_timer_timeout():
-	print("_on_timer_timeout")
 	shoot_bullet()
 
 func take_damage(damage: float):

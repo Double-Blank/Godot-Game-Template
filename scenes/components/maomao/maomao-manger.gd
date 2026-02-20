@@ -103,7 +103,6 @@ func perform_attack():
 	"""执行攻击"""
 	if target_plant and target_plant.has_method("take_damage"):
 		target_plant.take_damage(attack_damage)
-		print("毛毛虫攻击了植物，造成伤害: ", attack_damage)
 
 func find_nearest_plant():
 	"""寻找最近的植物目标"""
@@ -122,9 +121,10 @@ func find_nearest_plant():
 			nearest_distance = distance
 			nearest_plant = plant
 	
-	target_plant = nearest_plant
-	if target_plant:
-		print("毛毛虫发现目标植物，距离: ", nearest_distance)
+	# target_plant = nearest_plant
+	# if target_plant:
+	# 	pass
+		# print("毛毛虫发现目标植物，距离: ", nearest_distance)
 
 func move_towards_target(delta):
 	"""向目标移动"""
@@ -163,7 +163,7 @@ func update_animation():
 	var animation_name = stage_animations.get(current_stage, "stage1")
 	# 播放对应阶段的动画
 	spine_sprite.get_animation_state().set_animation(animation_name, true, 0)
-	
+	pass
 	print("毛毛虫到阶段: ", current_stage, " 播放动画: ", animation_name)
 	
 func set_current_stage(new_stage: MaoMaoStage):
@@ -205,7 +205,7 @@ func set_current_health(new_health: float):
 	# 发出生命值变化信号
 	if old_health != current_health:
 		health_changed.emit(current_health, max_health)
-		print("毛毛虫生命值变化: ", current_health, "/", max_health)
+		# print("毛毛虫生命值变化: ", current_health, "/", max_health)
 	
 	# 检查是否死亡
 	if current_health <= 0 and not is_dead:
@@ -217,7 +217,7 @@ func take_damage(damage: float):
 		return
 	
 	set_current_health(current_health - damage)
-	print("毛毛虫受到伤害: ", damage, " 剩余生命值: ", current_health)
+	# print("毛毛虫受到伤害: ", damage, " 剩余生命值: ", current_health)
 
 func heal(heal_amount: float):
 	"""治疗"""
@@ -250,14 +250,11 @@ func die():
 	# 发出死亡信号
 	died.emit()
 	health_depleted.emit()
-	
-	print("毛毛虫死亡")
 
 func _on_spine_animation_completed(sprite: SpineSprite, animation_state: SpineAnimationState, track_entry: SpineTrackEntry):
 	# 如果是死亡动画播放完成，则释放内存
 	var animation_name = track_entry.get_animation().get_name()
 	if animation_name == "death":
-		print("毛毛虫死亡动画播放完成，释放内存")
 		queue_free()
 
 func get_health_percentage() -> float:

@@ -27,8 +27,6 @@ func setup_absorption_system():
 	add_child(absorption_timer)
 	absorption_timer.start()
 	
-	print("阳光吸收系统已启动")
-
 func connect_signals():
 	"""连接相关信号"""
 	# 连接植物生长阶段变化信号
@@ -70,8 +68,6 @@ func absorb_sun(sun: SunDrop):
 	if sun.is_absorbed:
 		return
 	
-	print("植物吸收了阳光！")
-	
 	# 让阳光飞向植物并被吸收
 	sun.absorbed_by_plant(tomato_plant)
 	
@@ -91,23 +87,21 @@ func check_growth_conditions():
 		if tomato_plant and not tomato_plant.is_fully_grown():
 			var success = tomato_plant.grow_to_next_stage()
 			if success:
-				print("植物生长到下一阶段！当前阶段：", tomato_plant.get_stage_name())
+				pass
 			else:
-				print("植物已经完全成熟！")
+				pass
 
 func _on_plant_stage_changed(new_stage):
 	"""植物生长阶段改变时的回调"""
-	print("植物生长阶段改变：", tomato_plant.get_stage_name())
-	print("生长进度：", tomato_plant.get_progress_percentage(), "%")
+	pass
 
 func _on_plant_growth_completed():
 	"""植物完全成熟时的回调"""
-	print("恭喜！植物已经完全成熟！")
 	# 这里可以添加成熟后的逻辑，比如产生果实、给予奖励等
+	pass
 
 func _on_sun_spawned():
 	"""阳光生成时的回调"""
-	print("新的阳光已生成")
 	# 连接新生成阳光的信号
 	# 注意：这里需要等待一帧，让阳光完全添加到场景中
 	call_deferred("_connect_latest_sun_signals")
@@ -121,7 +115,7 @@ func _connect_latest_sun_signals():
 
 func _on_sun_absorbed_by_plant(sun_instance: SunDrop, plant_instance: Node2D):
 	"""当阳光被植物吸收时的回调"""
-	print("阳光通过点击被植物吸收！")
+	pass
 	
 	# 增加收集的阳光数量
 	collected_sun_count += 1
