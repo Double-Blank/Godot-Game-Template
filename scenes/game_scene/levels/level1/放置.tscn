@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cusf8i0u7r17f"]
+[gd_scene load_steps=14 format=3 uid="uid://cusf8i0u7r17f"]
 
 [ext_resource type="Script" uid="uid://cb5xn4cny3p7g" path="res://scenes/game_scene/levels/level1/sun_manager.gd" id="1_jbdtk"]
 [ext_resource type="Script" uid="uid://b0bs0m3atygx" path="res://scenes/game_scene/levels/level1/hand_manager.gd" id="2_ft2cs"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cdouwu1loliem" path="res://assets/background/ChooserBackground.png" id="5_q22br"]
 [ext_resource type="PackedScene" uid="uid://ucpqtf3ctck4" path="res://scenes/Cards/tomato.tscn" id="6_384io"]
 [ext_resource type="PackedScene" uid="uid://cbv6kaki1oyg1" path="res://scenes/Cards/res/peashooter.tscn" id="7_vskuu"]
+[ext_resource type="PackedScene" uid="uid://ch64xryf21kji" path="res://scenes/Cards/res/bow.tscn" id="8_61vy4"]
 [ext_resource type="PackedScene" uid="uid://bm727t6dkb31y" path="res://scenes/game_scene/levels/level1/cell.tscn" id="8_kqx2o"]
 [ext_resource type="PackedScene" uid="uid://c8p1i5dcx8gau" path="res://scenes/components/sunshine-generator/generator.tscn" id="9_drhbe"]
 [ext_resource type="PackedScene" uid="uid://c8y7x6v5u4t3r" path="res://scenes/components/生成器/enemy-generator/enemy_generator.tscn" id="10_7ebip"]
@@ -40,7 +41,7 @@ texture = ExtResource("3_jwkoh")
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("card_list") groups=["UI"]]
 script = ExtResource("4_m8mgc")
-card_list = [NodePath("ChooseCardBg/HBoxContainer/Tomato"), NodePath("ChooseCardBg/HBoxContainer/Peashooter")]
+card_list = [NodePath("ChooseCardBg/HBoxContainer/Tomato"), NodePath("ChooseCardBg/HBoxContainer/Peashooter"), NodePath("ChooseCardBg/HBoxContainer/Bow")]
 
 [node name="ChooseCardBg" type="TextureRect" parent="UI"]
 offset_right = 40.0
@@ -59,6 +60,9 @@ theme_override_constants/separation = 55
 layout_mode = 2
 
 [node name="Peashooter" parent="UI/ChooseCardBg/HBoxContainer" instance=ExtResource("7_vskuu")]
+layout_mode = 2
+
+[node name="Bow" parent="UI/ChooseCardBg/HBoxContainer" instance=ExtResource("8_61vy4")]
 layout_mode = 2
 
 [node name="Sun_Label" type="Label" parent="UI/ChooseCardBg"]

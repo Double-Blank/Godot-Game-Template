@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch64xryf21kji"]
+
+[ext_resource type="PackedScene" uid="uid://pp140i5yv0mm" path="res://scenes/Cards/card.tscn" id="1_vsnjr"]
+[ext_resource type="Resource" uid="uid://diw27hcrpfy33" path="res://scenes/Cards/res/bow.tres" id="2_qlrfp"]
+
+[node name="Bow" instance=ExtResource("1_vsnjr")]
+card_res = ExtResource("2_qlrfp")

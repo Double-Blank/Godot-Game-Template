@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CardRes" load_steps=6 format=3 uid="uid://diw27hcrpfy33"]
+
+[ext_resource type="Texture2D" uid="uid://bebbaqt5ct7sb" path="res://assets/card/card_bow2.png" id="1_h6d57"]
+[ext_resource type="Texture2D" uid="uid://csicgwdqrbyc3" path="res://assets/card/card_bow.png" id="2_ag6lt"]
+[ext_resource type="Texture2D" uid="uid://ci3mcwbfp4d4y" path="res://assets/card/bow_1.png" id="3_v5nx6"]
+[ext_resource type="PackedScene" uid="uid://4phk0b0keevx" path="res://scenes/components/bowandarrow/bowandarrow.tscn" id="4_6tqi0"]
+[ext_resource type="Script" uid="uid://5jt6kagixrys" path="res://scenes/Cards/res/card_res.gd" id="5_ap0rw"]
+
+[resource]
+script = ExtResource("5_ap0rw")
+card_name = "bow"
+card_light = ExtResource("2_ag6lt")
+card_dark = ExtResource("1_h6d57")
+card_shadow = ExtResource("3_v5nx6")
+plant_scene = ExtResource("4_6tqi0")
+metadata/_custom_type_script = "uid://5jt6kagixrys"

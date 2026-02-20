@@ -22,6 +22,7 @@ func update(_delta: float):
 	if card_cool:
 		card_cool.value = (card.card_res.cool_time - card.cd_time) / card.card_res.cool_time * 100
 		if card.cd_time >= card.card_res.cool_time:
+			card.is_plant = false
 			update_state.emit("WaitingSun")
 
 func physics_update(_delta: float):pass
