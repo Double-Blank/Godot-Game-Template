@@ -122,7 +122,7 @@ func update_animation():
 	# 播放对应阶段的动画
 	spine_sprite.get_animation_state().set_animation(animation_name, false, 0)
 	
-	# print("番茄生长到阶段: ", current_stage, " 播放动画: ", animation_name)
+	print("番茄生长到阶段: ", current_stage, " 播放动画: ", animation_name)
 
 func die():
 	"""植物死亡处理"""
@@ -169,6 +169,7 @@ func play_death_animation():
 
 func _on_death_animation_finished():
 	"""死亡动画完成后的处理"""
+	print("植物已死亡，正在销毁...")
 	queue_free()
 
 func take_damage(damage: float):
@@ -177,7 +178,7 @@ func take_damage(damage: float):
 		return
 		
 	current_health -= damage
-	# print("植物受到伤害: ", damage, " 剩余生命: ", current_health)
+	print("植物受到伤害: ", damage, " 剩余生命: ", current_health)
 	
 	# 可以在这里添加受伤动画效果
 	if not is_dead:
@@ -258,6 +259,8 @@ func on_harvested():
 	# 这里假设收获后番茄会重新生长
 	set_current_stage(GrowthStage.STAGE_5)
 	
+	print("植物已收获，重置到阶段5")
+
 # 调试用的手动控制函数
 func _input(event):
 	if not Engine.is_editor_hint():

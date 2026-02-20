@@ -81,9 +81,7 @@ func _on_stage3_button_pressed():
 
 # 毛毛虫事件处理
 func _on_health_changed(new_health: float, max_health: float):
-	pass
-	# print("UI: 毛毛虫生命值变化 - ", new_health, "/", max_health)
+	print("UI: 毛毛虫生命值变化 - ", new_health, "/", max_health)
 
 func _on_maomao_died():
-	pass
-	# print("UI: 毛毛虫死亡")
+	print("UI: 毛毛虫死亡")
