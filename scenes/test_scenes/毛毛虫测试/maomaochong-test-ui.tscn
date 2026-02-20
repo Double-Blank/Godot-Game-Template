@@ -8,8 +8,13 @@
 [node name="Maomaochong-test-ui" type="Node2D"]
 script = ExtResource("1_4issy")
 
+[node name="Maomao2" parent="." instance=ExtResource("1_rchby")]
+position = Vector2(793.2, 397.2)
+scale = Vector2(0.040000003, 0.040000003)
+move_speed = 15.0
+
 [node name="Maomao" parent="." instance=ExtResource("1_rchby")]
-position = Vector2(661, 331)
+position = Vector2(150.00003, 331)
 scale = Vector2(0.2, 0.2)
 move_speed = 15.0
 
@@ -63,9 +68,12 @@ position = Vector2(300, 432)
 auto_grow = true
 
 [node name="Bowandarrow" parent="." instance=ExtResource("3_1lpgw")]
-position = Vector2(122, 564)
+position = Vector2(119, 564)
 arrow_damage = 0.0
 knockback_force = 0.0
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="Bowandarrow2" parent="." instance=ExtResource("3_1lpgw")]
+position = Vector2(589, 480)

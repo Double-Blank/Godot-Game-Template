@@ -45,12 +45,12 @@ func _find_sun_manager(node: Node) -> SunManager:
 	return null
 
 func _on_mouse_entered():
-	print("_on_mouse_entered")
-	# 检查植物是否可收获（例如是否在最终阶段，这里可以根据需要添加逻辑）
-	# 暂时假设只要鼠标进入就显示手势
-	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	if parent_plant.has_method("can_harvest") and parent_plant.can_harvest():
+		# 直接全局修改鼠标样式
+		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 
 func _on_mouse_exited():
+	# 恢复默认箭头
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):

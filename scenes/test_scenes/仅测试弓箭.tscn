@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsjh2mlc4fdy4"]
+
+[ext_resource type="PackedScene" uid="uid://4phk0b0keevx" path="res://scenes/components/bowandarrow/bowandarrow.tscn" id="1_yay38"]
+[ext_resource type="PackedScene" uid="uid://ca31smj1enqj2" path="res://plants/pea_shooter.tscn" id="2_ser1n"]
+
+[node name="仅测试弓箭" type="Node2D"]
+
+[node name="Bowandarrow" parent="." instance=ExtResource("1_yay38")]
+position = Vector2(526, 312)
+
+[node name="PeaShooter" parent="." instance=ExtResource("2_ser1n")]
+position = Vector2(160, 168)

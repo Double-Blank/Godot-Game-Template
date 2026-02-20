@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 
 @onready var tomato_plant = $TomatoPlant
 @onready var stage_label = $UI/VBoxContainer/StageLabel

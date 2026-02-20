@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bob17mdohagdp"]
+
+[ext_resource type="PackedScene" uid="uid://bvxk8y7qg8xqr" path="res://scenes/components/plant-tomato-stage/tomato_plant.tscn" id="1_5ny2a"]
+
+[node name="实例化植物" type="Node2D"]
+
+[node name="TomatoPlant" parent="." instance=ExtResource("1_5ny2a")]
+position = Vector2(381, 202)
