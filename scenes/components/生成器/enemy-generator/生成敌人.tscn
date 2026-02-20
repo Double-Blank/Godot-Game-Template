@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwgprkc48bejc"]
+
+[ext_resource type="PackedScene" uid="uid://c8y7x6v5u4t3r" path="res://scenes/components/生成器/enemy-generator/enemy_generator.tscn" id="1_li60u"]
+[ext_resource type="PackedScene" uid="uid://m6lh3kio13pv" path="res://scenes/components/maomao/maomao.tscn" id="2_8xvt4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3drkp"]
+size = Vector2(1229, 684)
+
+[node name="生成敌人" type="Node2D"]
+
+[node name="EnemyGenerator" parent="." node_paths=PackedStringArray("spawn_zone") instance=ExtResource("1_li60u")]
+enemy_scenes = Array[PackedScene]([ExtResource("2_8xvt4")])
+spawn_zone = NodePath("Area2D")
+min_interval = 1.0
+max_interval = 2.0
+max_scale = 0.2
+
+[node name="Area2D" type="Area2D" parent="EnemyGenerator"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyGenerator/Area2D"]
+position = Vector2(637, 357)
+shape = SubResource("RectangleShape2D_3drkp")

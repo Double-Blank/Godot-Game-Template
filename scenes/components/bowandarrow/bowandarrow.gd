@@ -58,21 +58,21 @@ func _on_animation_event(sprite: SpineSprite, animation_state: SpineAnimationSta
 
 # 鼠标点击时触发动画
 func _input(event: InputEvent) -> void:
-	# 左键点击：播放动画，准备向鼠标位置发射
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+	# you键点击：播放动画，准备向鼠标位置发射
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 		# 获取鼠标位置作为目标
 		var target_pos = get_global_mouse_position()
 		# 触发动画播放
 		play_shoot_animation(target_pos)
 	
-	# 右键点击：播放动画，准备向指定位置发射（例如屏幕中心）
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-		# 示例：向屏幕中心发射
-		var viewport = get_viewport()
-		var screen_center = viewport.get_visible_rect().size * 0.5
-		var world_center = get_viewport().get_canvas_transform().affine_inverse() * screen_center
-		# 触发动画播放
-		play_shoot_animation(world_center)
+	# left键点击：播放动画，准备向指定位置发射（例如屏幕中心）
+	#if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		## 示例：向屏幕中心发射
+		#var viewport = get_viewport()
+		#var screen_center = viewport.get_visible_rect().size * 0.5
+		#var world_center = get_viewport().get_canvas_transform().affine_inverse() * screen_center
+		## 触发动画播放
+		#play_shoot_animation(world_center)
 
 # 播放射击动画并准备发射
 func play_shoot_animation(target_position: Vector2 = Vector2.ZERO):

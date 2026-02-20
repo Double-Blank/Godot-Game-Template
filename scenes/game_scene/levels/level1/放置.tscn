@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cusf8i0u7r17f"]
+[gd_scene load_steps=13 format=3 uid="uid://cusf8i0u7r17f"]
 
 [ext_resource type="Script" uid="uid://cb5xn4cny3p7g" path="res://scenes/game_scene/levels/level1/sun_manager.gd" id="1_jbdtk"]
 [ext_resource type="Script" uid="uid://b0bs0m3atygx" path="res://scenes/game_scene/levels/level1/hand_manager.gd" id="2_ft2cs"]
@@ -9,6 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://cbv6kaki1oyg1" path="res://scenes/Cards/res/peashooter.tscn" id="7_vskuu"]
 [ext_resource type="PackedScene" uid="uid://bm727t6dkb31y" path="res://scenes/game_scene/levels/level1/cell.tscn" id="8_kqx2o"]
 [ext_resource type="PackedScene" uid="uid://c8p1i5dcx8gau" path="res://scenes/components/sunshine-generator/generator.tscn" id="9_drhbe"]
+[ext_resource type="PackedScene" uid="uid://c8y7x6v5u4t3r" path="res://scenes/components/生成器/enemy-generator/enemy_generator.tscn" id="10_7ebip"]
+[ext_resource type="PackedScene" uid="uid://m6lh3kio13pv" path="res://scenes/components/maomao/maomao.tscn" id="11_61vy4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bbl5"]
+size = Vector2(935.5, 570.5)
 
 [node name="放置" type="Node2D"]
 
@@ -207,3 +212,15 @@ offset_bottom = 23.0
 text = "测试文本"
 
 [node name="GeneratorEnergy" parent="." instance=ExtResource("9_drhbe")]
+
+[node name="EnemyGenerator" parent="." node_paths=PackedStringArray("spawn_zone") instance=ExtResource("10_7ebip")]
+enemy_scenes = Array[PackedScene]([ExtResource("11_61vy4")])
+spawn_zone = NodePath("../敌人生成范围")
+min_interval = 13.0
+max_interval = 27.0
+
+[node name="敌人生成范围" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="敌人生成范围"]
+position = Vector2(783.25, 420.75)
+shape = SubResource("RectangleShape2D_3bbl5")

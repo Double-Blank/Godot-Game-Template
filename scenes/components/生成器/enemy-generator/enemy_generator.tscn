@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8y7x6v5u4t3r"]
+
+[ext_resource type="Script" uid="uid://6ktieu2vtcqp" path="res://scenes/components/生成器/enemy-generator/enemy_generator.gd" id="1_script"]
+
+[node name="EnemyGenerator" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
